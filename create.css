@@ -212,16 +212,16 @@
 }
 
 .language-checkbox-list {
-    display: grid;
-    grid-template-columns: 32% 32% 32%;
-    grid-template-row: 20% 30% 30%;
-}
-
-.language-checkbox-item {
     display: flex;
-
+    flex-wrap: wrap;
+    
 }
-
+.language-checkbox-item {
+    display: flex
+;
+    gap: 2% 0%;
+    padding: 1% 6%;
+}
 
 
 .dot {
