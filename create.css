@@ -1,0 +1,474 @@
+ /* General Styles */
+ body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+    transition: background-color 0.3s ease;
+    /* Subtle gradient */
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.create {
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #ff7eb3, #ff758c);
+    background-size: 300% 300%;
+    animation: gradientShift 7s infinite alternate;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    /* Added transition */
+}
+
+/* Resume Form Styles */
+.form-container {
+    margin: auto;
+    padding: 5%;
+    width: 66%;
+    border-radius: 8px;
+    box-shadow: 0 0 44px rgba(0, 0, 0, 1.1);
+    transition: background-color 0.3s ease;
+    /* Added transition */
+}
+
+.form-container label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    /* Added transition */
+}
+
+.form-container button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 12px 19px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Added transition */
+}
+
+.form-container button:hover {
+    background-color: #4cae4c;
+}
+
+/* Updated Resume Styles */
+.resume-container {
+    margin: auto;
+    padding: 1% -1%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+    /* Added transition */
+}
+
+/* New Styles for Layout */
+.top-section {
+    color: #333;
+    display: flex;
+    text-align: left;
+    text-transform: uppercase;
+    background: #a5c8b2;
+    transition: background-color 0.3s ease;
+    /* Added transition */
+}
+
+
+.profile-image-container {
+    width: 32%;
+    margin: 3% 3%;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+    /* Added transition */
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+    /* Added transition */
+}
+
+.header-text {
+    text-align: center;
+    width: 76%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 24px;
+    transition: color 0.3s ease;
+    /* Added transition */
+}
+
+
+.header-text h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+    color: #333;
+    transition: color 0.3s ease;
+    /* Added transition */
+}
+
+.header-text h4 {
+    font-size: 1.2em;
+    color: #666;
+    transition: color 0.3s ease;
+    /* Added transition */
+}
+
+.left-section {
+    background-color: #e9f5f3;
+    width: 46%;
+    padding: 6% 5%;
+    box-sizing: border-box;
+    height: auto;
+    transition: background-color 0.3s ease;
+    /* Added transition */
+}
+
+.right-section {
+    width: 49%;
+    box-sizing: border-box;
+    padding: 6% 5%;
+    transition: background-color 0.3s ease;
+    /* Added transition */
+}
+
+/* Common Section Styles */
+.section {
+    margin-bottom: 19px;
+    transition: margin-bottom 0.3s ease;
+    /* Added transition */
+}
+
+.section h3 {
+    color: #5cb85c;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    /* Added transition */
+}
+
+.section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.section ul li {
+    margin-bottom: 5px;
+    transition: margin-bottom 0.3s ease;
+    /* Added transition */
+}
+
+.contact-info p {
+    margin: 5px 0;
+    transition: margin 0.3s ease;
+    /* Added transition */
+}
+
+/* Styles for the Language Dots */
+.language-dots {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.language-checkbox-list {
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    grid-template-row: 20% 30% 30%;
+}
+
+.language-checkbox-item {
+    display: flex;
+
+}
+
+
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #888;
+    margin-right: 3px;
+}
+
+.numbered-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.numbered-list li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.numbered-list li:before {
+    content: attr(data-number);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #a9d9d0;
+    color: #333;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+    font-size: 14px;
+}
+
+/* Download Button Styles */
+.download-button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    /* Added transition */
+}
+
+.download-button:hover {
+    background-color: #4cae4c;
+}
+
+/* Skills */
+.skills-ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skills-ul li {
+    position: relative;
+    padding-left: 15px;
+}
+
+.skills-ul li:before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+}
+
+.languages-ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.languages-ul li {
+    margin-bottom: 5px;
+}
+
+.section1 {
+    display: flex;
+}
+
+.generate {
+    display: flex;
+    gap: 5%;
+    margin: 5% 0%;
+}
+
+.form-container.hidden {
+    display: none;
+}
+
+#resumeContent.visible {
+    margin-top: 6%;
+    display: block;
+}
+
+#resumeContent {
+    display: none;
+    /* Initially hidden */
+}
+
+/* Styles for the Image Gallery */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery-item {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.modal-content,
+#caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(0)
+    }
+
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;
+        /* Adjust form width for smaller screens */
+        padding: 3%;
+    }
+
+    .container {
+        width: 95%;
+        /* Adjust container width */
+    }
+
+    .profile-image-container {
+        width: 40%;
+        /* Increase image size on smaller screens */
+        margin: 2%;
+    }
+
+    .section1 {
+        flex-direction: column;
+        /* Stack the left and right sections */
+    }
+
+    .left-section,
+    .right-section {
+        width: 90%;
+        /* Make sections full width */
+        padding: 4%;
+    }
+
+    .header-text {
+        width: 58%;
+    }
+}
+
+/* Style for the resume-section */
+#resume-section {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Beautiful Background Gradient for create section */
+.create {
+    padding: 20px;
+}
+
+/* Beautiful Background Gradient for PDF Download */
+.pdf-background-gradient {
+    background: linear-gradient(135deg, #a8e063, #56ab2f);
+    /* Soothing Green Gradient */
+}

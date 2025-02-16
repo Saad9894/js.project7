@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CODE-MATE Register-Login</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Merienda", serif;
+      background-color: #012a4a;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #auth-section {
+      background: #013a63;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #1e1e2e;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      background: #282a36;
+      padding: 10px 20px;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin: 5px;
+      background: #00d4ff;
+      border: none;
+      cursor: pointer;
+      color: black;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #44475a;
+      padding: 10px;
+      margin: 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    h3 {
+      margin-bottom: 20px;
+      color: #98c1d9;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 92%;
+      padding: 12px;
+      border: 2px solid #61a5c2;
+      border-radius: 5px;
+      background: transparent;
+      color: white;
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: #98c1d9;
+    }
+
+    label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      color: #98c1d9;
+      transition: 0.3s;
+    }
+
+    input:focus+label,
+    input:not(:placeholder-shown)+label {
+      top: -10px;
+      left: 10px;
+      font-size: 12px;
+      color: #61a5c2;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: #61a5c2;
+      color: #012a4a;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #98c1d9;
+      color: #013a63;
+    }
+
+    p {
+      margin-top: 15px;
+      color: #98c1d9;
+    }
+
+    a {
+      color: #61a5c2;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #login-section.active,
+    #register-form.active {
+      display: block;
+    }
+
+    #login-section,
+    #register-form {
+      display: none;
+    }
+
+    #login-section.active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="auth-section">
+    <!-- Login Form -->
+    <div id="login-section" class="active">
+      <h3>Login</h3>
+      <div class="input-group">
+        <input type="email" id="login-email" placeholder=" " required>
+        <label for="login-email">Email</label>
+      </div>
+      <div class="input-group">
+        <input type="password" id="login-password" placeholder=" " required>
+        <label for="login-password">Password</label>
+      </div>
+      <button onclick="loginUser()">Login</button>
+      <p>Don't have an account? <a href="#" onclick="toggleSection()">Register</a></p>
+    </div>
+
+    <!-- Register Form -->
+    <form id="register-form">
+      <h3>Register</h3>
+      <div class="input-group">
+        <input type="email" id="register-email" placeholder=" " required>
+        <label for="register-email">Email</label>
+      </div>
+      <div class="input-group">
+        <input type="password" id="register-password" placeholder=" " required>
+        <label for="register-password">Password</label>
+      </div>
+      <div class="input-group">
+        <input type="text" id="register-username" placeholder=" " required>
+        <label for="register-username">Username</label>
+      </div>
+
+
+      <button type="button" id="register-btn" onclick="registerUser()">Register</button>
+      <p>Already have an account? <a href="#" onclick="toggleSection()">Login</a></p>
+    </form>
+  </div>
+
+  <!-- Firebase CDN links for SDK version 8 -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+
+  <script>
+    //  Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyACfUtpWAZ26Zy3Rnl5WrI8NxyOT3ew8k4",
+      authDomain: "my-dynamic-cv.firebaseapp.com",
+      projectId: "my-dynamic-cv",
+      storageBucket: "my-dynamic-cv.firebasestorage.app",
+      messagingSenderId: "1061904985626",
+      appId: "1:1061904985626:web:3b867c3525b4c622bb2ba3",
+      measurementId: "G-X9YER14J41"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Toggle between login and register sections
+    function toggleSection() {
+      document.getElementById("login-section").classList.toggle("active");
+      document.getElementById("register-form").classList.toggle("active");
+    }
+
+
+    // Login user
+    function loginUser() {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "index.html";
+        })
+        .catch(error => {
+          console.log("Error: " + error.message);
+          alert("Error", "Invalid username or password");
+        });
+    }
+    // Register user
+    async function registerUser() {
+      const email = document.getElementById("register-email").value;
+      const password = document.getElementById("register-password").value;
+      const username = document.getElementById("register-username").value;
+
+      const registerButton = document.getElementById("register-btn");
+      const resume = []
+      if (email && password && username) {
+        // Show spinner and disable button
+        registerButton.disabled = true;
+        registerButton.innerHTML = `
+            <div class="spinner-div"> <span class="spinner"></span></div>
+        `;
+
+        try {
+          const cred = await auth.createUserWithEmailAndPassword(email, password);
+          await db.collection("users").doc(cred.user.uid).set({
+            username: username,
+            resume: resume
+
+
+          });
+          alert("Registration successful!");
+          window.location.href = "index.html";
+          // window.location.href = "profile.html";
+        } catch (error) {
+          console.log("Error: " + error.message);
+          alert("Error", "user already exist");
+        } finally {
+          registerButton.disabled = false;
+          registerButton.innerHTML = 'Register';
+        }
+      } else {
+        alert("Error", "Please fill all fields");
+      }
+    }
+
+    //dashboard
+
+
+
+  </script>
+</body>
+
+</html>

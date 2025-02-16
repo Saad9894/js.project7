@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <title>Dynamic Resume Generator</title>
+    <link rel="stylesheet" href="data.json">
+    <link rel="stylesheet" href="create.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+</head>
+
+<body>
+    <section class="create">
+        <div id="resume-section" class="resume-section">
+            <h2>Interactive Resume Creator</h2>
+            <p>Welcome to the resume creation section! Here, you can add all your details to build your personalized
+                resume.
+            </p>
+            <!-- Add additional content here -->
+        </div>
+
+        <div class="container">
+
+            <div class="form-container" id="resumeFormContainer">
+                <h2>Enter Your Details</h2>
+                <form id="resumeForm">
+                    <label for="profilePicUpload">Upload Profile Picture</label>
+                    <input type="file" id="profilePicUpload">
+
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+
+                    <label for="jobTitle">Job Title</label>
+                    <input type="text" id="jobTitle" placeholder="Enter your job title">
+
+                    <label for="contact">Contact</label>
+                    <input type="text" id="contact" placeholder="Enter your contact details">
+
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Enter your email">
+
+                    <label for="address">Address</label>
+                    <input type="text" id="address" placeholder="Enter your address">
+
+
+                    <label for="skills">Skills (comma separated)</label>
+                    <input type="text" id="skills"
+                        placeholder="Enter your skills (e.g., Adaptability, Problem-Solving)">
+
+                    <label for="languages">Languages (Select up to 7)</label>
+                    <div class="language-dropdown-container">
+                        <div class="language-checkbox-list">
+                            <div class="language-checkbox-item">
+                                <input type="checkbox" id="lang_en" name="languages" value="en">
+                                <label for="lang_en">English</label>
+                                <select id="level_en" class="language-level-select">
+                                    <option value="basic">Basic</option>
+                                    <option value="conversational">Conversational</option>
+                                    <option value="fluent">Fluent</option>
+                                    <option value="native">Native</option>
+                                </select>
+                            </div>
+                            <div class="language-checkbox-item">
+                                <input type="checkbox" id="lang_zh" name="languages" value="zh">
+                                <label for="lang_zh">Chinese</label>
+                                <select id="level_zh" class="language-level-select">
+                                    <option value="basic">Basic</option>
+                                    <option value="conversational">Conversational</option>
+                                    <option value="fluent">Fluent</option>
+                                    <option value="native">Native</option>
+                                </select>
+                            </div>
+                            <div class="language-checkbox-item">
+                                <input type="checkbox" id="lang_es" name="languages" value="es">
+                                <label for="lang_es">Spanish</label>
+                                <select id="level_es" class="language-level-select">
+                                    <option value="basic">Basic</option>
+                                    <option value="conversational">Conversational</option>
+                                    <option value="fluent">Fluent</option>
+                                    <option value="native">Native</option>
+                                </select>
+                            </div>
+                            <div class="language-checkbox-item">
+                                <input type="checkbox" id="lang_fr" name="languages" value="fr">
+                                <label for="lang_fr">French</label>
+                                <select id="level_fr" class="language-level-select">
+                                    <option value="basic">Basic</option>
+                                    <option value="conversational">Conversational</option>
+                                    <option value="fluent">Fluent</option>
+                                    <option value="native">Native</option>
+                                </select>
+                            </div>
+                            <div class="language-checkbox-item">
+                                <input type="checkbox" id="lang_de" name="languages" value="de">
+                                <label for="lang_de">German</label>
+                                <select id="level_de" class="language-level-select">
+                                    <option value="basic">Basic</option>
+                                    <option value="conversational">Conversational</option>
+                                    <option value="fluent">Fluent</option>
+                                    <option value="native">Native</option>
+                                </select>
+                            </div>
+
+                            <div class="language-checkbox-item">
+                                <input type="checkbox" id="lang_ru" name="languages" value="ru">
+                                <label for="lang_ru">Russian</label>
+                                <select id="level_ru" class="language-level-select">
+                                    <option value="basic">Basic</option>
+                                    <option value="conversational">Conversational</option>
+                                    <option value="fluent">Fluent</option>
+                                    <option value="native">Native</option>
+                                </select>
+                            </div>
+                            <div class="language-checkbox-item">
+                                <input type="checkbox" id="lang_ja" name="languages" value="ja">
+                                <label for="lang_ja">Japanese</label>
+                                <select id="level_ja" class="language-level-select">
+                                    <option value="basic">Basic</option>
+                                    <option value="conversational">Conversational</option>
+                                    <option value="fluent">Fluent</option>
+                                    <option value="native">Native</option>
+                                </select>
+                            </div>
+                            <!-- Add more languages as needed -->
+                        </div>
+                    </div>
+
+                    <label for="hobbies">Hobbies</label>
+                    <textarea id="hobbies" placeholder="Enter your hobbies (one per line)" rows="4"></textarea>
+
+                    <label for="summary">Professional Summary</label>
+                    <textarea id="summary" placeholder="Write a short professional summary"></textarea>
+
+                    <label for="education">Education</label>
+                    <textarea id="education" placeholder="Your education history"></textarea>
+
+                    <label for="experience">Experience</label>
+                    <textarea id="experience" placeholder="Your work experience"></textarea>
+
+                    <label for="projectDescription">ProjectDescription</label>
+                    <textarea id="projectDescription" placeholder="Describe your project"></textarea>
+
+                    <label for="projectLink">Project Link</label>
+                    <input type="text" id="projectLink" placeholder="Enter link to your project">
+
+                    <label for="projectImages">Project Images (Upload multiple)</label>
+                    <input type="file" id="projectImages" multiple accept="image/*">
+
+                    <div class="generate">
+                        <button type="button" onclick="generateResume(event)">Generate Resume</button>
+                        <button type="button" onclick="downloadPDF()" class="download-button">Download PDF</button>
+                    </div>
+                </form>
+            </div>
+            <div id="resumeContent"></div>
+
+            <!-- The Modal -->
+            <div id="imageModal" class="modal">
+                <span class="close" onclick="closeModal()">×</span>
+                <img class="modal-content" id="img01">
+                <div id="caption"></div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+        let generatedResumeHTML = ''; // Store the generated HTML here
+        let resumeData = null; // Store fetched resume data
+
+        async function generateResume(event) {
+            event.preventDefault();
+
+            // Fetch data from JSON file
+            try {
+                const response = await fetch('data.json');
+                resumeData = await response.json();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                alert('Failed to load additional details. Please try again.');
+                return;
+            }
+
+            const name = document.getElementById("name").value;
+            const jobTitle = document.getElementById("jobTitle").value;
+            const contact = document.getElementById("contact").value;
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+            const skills = document.getElementById("skills").value;
+
+            const languages = Array.from(document.querySelectorAll('input[name="languages"]:checked'))
+                .map(checkbox => {
+                    const langCode = checkbox.value;
+                    const level = document.getElementById(`level_${langCode}`).value;
+                    return { code: langCode, level: level, label: checkbox.labels[0].textContent };
+                });
+
+            const hobbies = document.getElementById("hobbies").value;
+            const summary = document.getElementById("summary").value;
+            const education = document.getElementById("education").value;
+            const experience = document.getElementById("experience").value;
+            const profilePic = document.getElementById("profilePicUpload").files[0];
+            const projectDescription = document.getElementById("projectDescription").value;
+            let projectLink = document.getElementById("projectLink").value;
+            const projectImages = document.getElementById("projectImages").files;
+
+            // Add https:// if it's not already there
+            if (projectLink && !projectLink.startsWith('https://') && !projectLink.startsWith('http://')) {
+                projectLink = 'https://' + projectLink;
+            }
+
+            const profilePicURL = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(profilePic);
+            });
+
+            const skillsList = skills.split(',').map(skill => `<li>${skill.trim()}</li>`).join('');
+            const hobbiesList = hobbies.split('\n').map(hobby => `<li>${hobby.trim()}</li>`).join('');
+
+            const languageList = languages.map(lang => `
+                <li>${lang.label}
+                    <div class="language-dots">${getLanguageDots(lang.level)}</div>
+                </li>
+            `).join('');
+
+            let contactInfo = `
+               <p>${contact}</p>
+               <p>${email}</p>
+            `;
+
+            let projectSection = '';
+
+            if (projectDescription || projectImages.length > 0) {
+                projectSection += `<div class="section"><h3>Project Details</h3>`;
+
+                if (projectDescription) {
+                    projectSection += `<p>${projectDescription}</p>`;
+                }
+
+                if (projectLink) {
+                    projectSection += `<p><a href="${projectLink}" target="_blank">${projectLink}</a></p>`;
+                }
+
+                if (projectImages.length > 0) {
+                    projectSection += '<h4>Project Images</h4>';
+                    projectSection += '<div class="gallery">';
+                    for (let i = 0; i < projectImages.length; i++) {
+                        const imageURL = await new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.onload = (e) => resolve(e.target.result);
+                            reader.onerror = reject;
+                            reader.readAsDataURL(projectImages[i]);
+                        });
+
+                        projectSection += `
+                        <div class="gallery-item">
+                            <img src="${imageURL}" alt="Project Image ${i + 1}" onclick="openModal('${imageURL}', 'Project Image ${i + 1}')">
+                        </div>
+                    `;
+                    }
+
+                    projectSection += '</div>';
+                }
+                projectSection += '</div>';
+            }
+
+            const achievementsList = resumeData && resumeData.achievements ?
+                resumeData.achievements.map(achievement => `<li>${achievement}</li>`).join('') :
+                '<li>No achievements listed.</li>';
+
+            const sortedLanguages = [...languages].sort((a, b) => {
+                if (a.code === 'en') return -1;
+                if (b.code === 'en') return 1;
+                if (a.code === 'zh') return -1;
+                if (b.code === 'zh') return 1;
+                return 0;
+            });
+
+            const languageListSorted = sortedLanguages.map(lang => `
+            <li>${lang.label}
+                <div class="language-dots">${getLanguageDots(lang.level)}</div>
+            </li>
+        `).join('');
+
+            generatedResumeHTML = `
+                <div class="resume-container">
+                    <div class="top-section">
+                        <div class="profile-image-container">
+                            <img src="${profilePicURL}" alt="Profile Picture">
+                        </div>
+                        <div class="header-text">
+                            <h1>${name}</h1>
+                            <h4>${jobTitle}</h4>
+                        </div>
+                    </div>
+                    <div class="section1">
+                        <div class="left-section">
+                            <div class="section contact-info">
+                                <h3>Contact</h3>
+                                 ${contactInfo}
+                            </div>
+                           
+                            <div class="section">
+                               <h3>Skills</h3>
+                                <ul class="skills-ul">${skillsList}</ul>
+                            </div>
+                            <div class="section">
+                                <h3>Languages</h3>
+                                <ul class="languages-ul">${languageListSorted}</ul>
+                            </div>
+                            <div class="section">
+                                <h3>Hobbies</h3>
+                                <ul>${hobbiesList}</ul>
+                            </div>
+                            <div class="section">
+                                <h3>Professional Summary</h3>
+                                <p>${summary}</p>
+                            </div>
+                        </div>
+                        <div class="right-section">
+
+                            <div class="section">
+                                <h3>Education</h3>
+                                <p>${education}</p>
+                            </div>
+                            <div class="section">
+                                <h3>Experience</h3>
+                                <p>${experience}</p>
+                            </div>
+                            <div class="section">
+                                <h3>Achievements</h3>
+                                <ul>${achievementsList}</ul>
+                            </div>
+                            ${projectSection}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById("resumeContent").innerHTML = generatedResumeHTML;
+            document.getElementById("resumeContent").classList.add("visible");
+        }
+
+        function getLanguageDots(level) {
+            let dots = "";
+            let levels = {
+                "basic": 1,
+                "conversational": 2,
+                "fluent": 3,
+                "native": 4
+            };
+
+            for (let i = 0; i < 4; i++) {
+                dots += `<span class="dot" style="background-color: ${i < levels[level] ? '#5cb85c' : '#ccc'};"></span>`;
+            }
+            return dots;
+        }
+
+        function downloadPDF() {
+            if (!generatedResumeHTML) {
+                alert("Please generate your resume first.");
+                return;
+            }
+            const resumeContent = document.getElementById("resumeContent");
+
+            // Add the background gradient class to the resume content
+            resumeContent.classList.add('pdf-background-gradient');
+
+            html2pdf(resumeContent, {
+                margin: 10,
+                filename: 'My_Resume.pdf',
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            }).then(() => {
+                // Remove the background gradient class after PDF is generated
+                resumeContent.classList.remove('pdf-background-gradient');
+            });
+        }
+
+
+        function openModal(fullImage, altText) {
+            document.getElementById("imageModal").style.display = "block";
+            document.getElementById("img01").src = fullImage;
+            document.getElementById("caption").innerHTML = altText;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
