@@ -444,7 +444,7 @@
 
         .left-section,
         .right-section {
-            width: 90%;
+            width: 100%;
             /* Make sections full width */
             padding: 4%;
         }
@@ -463,4 +463,11 @@
     /* Beautiful Background Gradient for create section */
     .create {
         padding: 20px;
+    }
+    button.btns {
+        /* height: 3vw; */
+        background: #c26c26;
+        color: wheat;
+        padding: 0.5% 2%;
+        font-weight: bold;
     }
