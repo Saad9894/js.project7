@@ -8,7 +8,194 @@
         transition: background-color 0.3s ease;
         /* Subtle gradient */
     }
+    .nav{
+        width: 40%;
+        margin: 0% auto;
+    }
+/* General Navbar Styling */
+.navbar {
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0%;
+    justify-content: space-between;
+    background-color: #f4f4f9;
+    height: 86px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+    box-sizing: border-box;
+}
 
+/* Logo Styling */
+.logo img {
+    height: 86px;
+    width: 142%;
+    justify-content: unset;
+    cursor: pointer;
+    transition: transform 0.3sease;
+    display: flex
+;
+}
+
+/* Navigation Links Styling */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Theme Switcher Styling */
+.theme-switcher {
+    display: flex;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: rgb(2, 2, 2);
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #007bff;
+}
+
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+/* Theme Variables */
+:root {
+    --background: #ffffff;
+    --text: #333333;
+    --nav-bg: #f0f0f0;
+    --nav-text: #333333;
+    --highlight: #007bff;
+}
+
+[data-theme="dark"] {
+    --background: #121212;
+    --text: #ffffff;
+    --nav-bg: #333333;
+    --nav-text: #ffffff;
+    --highlight: #ff6f61;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--highlight);
+    color: #ccc;
+}
+
+input:checked+.slider:before {
+    transform: translateX(14px);
+}/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Mobile Menu Button Styles */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+}
     @keyframes gradientShift {
         0% {
             background-position: 0% 50%;
@@ -19,11 +206,6 @@
         }
     }
 
-    .create {
-        background: linear-gradient(135deg, #00c6ff, #0072ff, #ff7eb3, #ff758c);
-        background-size: 300% 300%;
-        animation: gradientShift 7s infinite alternate;
-    }
 
     .container {
         width: 90%;
@@ -461,9 +643,7 @@
     }
 
     /* Beautiful Background Gradient for create section */
-    .create {
-        padding: 20px;
-    }
+    
     button.btns {
         /* height: 3vw; */
         background: #c26c26;
@@ -471,3 +651,45 @@
         padding: 0.5% 2%;
         font-weight: bold;
     }
+    .form-container{
+        background-color: rgb(248, 25, 230);
+    }
+    
+/* Mobile Menu Styles */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 86px;
+        left: 0;
+        width: 100%;
+        background-color: #f4f4f4;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* For Very Small Screens */
+@media (max-width: 480px) {
+       footer {
+        font-size: 14px;
+    }
+  .navbar {
+
+        width: 100%;
+    }
+
+    .logo img {
+        width: 93%;
+    }
+}

@@ -5,18 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Resume Generator</title>
-    <link rel="stylesheet" href="data.json">
     <link rel="stylesheet" href="create.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
 </head>
 
 <body>
     <section class="create">
-        
-        <a href="register.html"><button class="btns">BACK</button></a>
+        <header class="navbar">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <img src="Screenshot__51_-removebg-preview.png" alt="My Dynamic CV Logo">
+            </div>
+            <div class="nav">
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="register.html" id="home-link">Home</a></li>
+                <li><a href="#abouts" id="about-link">About</a></li>
+                <li><a href="#how-it" id="service-link">Service</a></li>
+                <li><a href="#testimonials" id="testimonial-link">Testimonial</a></li>
+                <li><a href="#faq" id="faq-link">FAQ</a></li>
+                <li><a href="#contact" id="contact-link">Contact</a></li>
+            </ul></div>
+            
+        </header>
+
         <div id="resume-section" class="resume-section">
             <h2>Interactive Resume Creator</h2>
             <p>Welcome to the resume creation section! Here, you can add all your details to build your personalized
@@ -43,9 +59,9 @@
                     <label for="email">Email</label>
                     <input type="email" id="email" placeholder="Enter your email">
 
-                    <label for="address">Address</label>
-                    <input type="text" id="address" placeholder="Enter your address">
-
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" rows="4" cols="40"
+                        placeholder="Enter your full address..."></textarea>
 
                     <label for="skills">Skills (comma separated)</label>
                     <input type="text" id="skills"
@@ -56,7 +72,7 @@
                         <div class="language-checkbox-list">
                             <div class="language-checkbox-item">
                                 <input type="checkbox" id="lang_en" name="languages" value="en">
-                                <label for="lang_en">English</label>
+                                <label for="lang_en">Tamil</label>
                                 <select id="level_en" class="language-level-select">
                                     <option value="basic">Basic</option>
                                     <option value="conversational">Conversational</option>
@@ -86,8 +102,19 @@
                             </div>
                             <div class="language-checkbox-item">
                                 <input type="checkbox" id="lang_fr" name="languages" value="fr">
-                                <label for="lang_fr">Tamil</label>
+                                <label for="lang_fr">English</label>
                                 <select id="level_fr" class="language-level-select">
+                                    <option value="basic">Basic</option>
+                                    <option value="conversational">Conversational</option>
+                                    <option value="fluent">Fluent</option>
+                                    <option value="native">Native</option>
+                                </select>
+                            </div>
+
+                            <div class="language-checkbox-item">
+                                <input type="checkbox" id="lang_ru" name="languages" value="ru">
+                                <label for="lang_ru">Hindi</label>
+                                <select id="level_ru" class="language-level-select">
                                     <option value="basic">Basic</option>
                                     <option value="conversational">Conversational</option>
                                     <option value="fluent">Fluent</option>
@@ -104,11 +131,10 @@
                                     <option value="native">Native</option>
                                 </select>
                             </div>
-
                             <div class="language-checkbox-item">
-                                <input type="checkbox" id="lang_ru" name="languages" value="ru">
-                                <label for="lang_ru">Hindi</label>
-                                <select id="level_ru" class="language-level-select">
+                                <input type="checkbox" id="lang_ar" name="languages" value="ar">
+                                <label for="lang_ar">Arabic</label>
+                                <select id="level_ar" class="language-level-select">
                                     <option value="basic">Basic</option>
                                     <option value="conversational">Conversational</option>
                                     <option value="fluent">Fluent</option>
@@ -129,9 +155,6 @@
                         </div>
                     </div>
 
-                    <label for="hobbies">Hobbies</label>
-                    <textarea id="hobbies" placeholder="Enter your hobbies (one per line)" rows="4"></textarea>
-
                     <label for="summary">Professional Summary</label>
                     <textarea id="summary" placeholder="Write a short professional summary"></textarea>
 
@@ -141,14 +164,10 @@
                     <label for="experience">Experience</label>
                     <textarea id="experience" placeholder="Your work experience"></textarea>
 
-                    <label for="projectDescription">ProjectDescription</label>
-                    <textarea id="projectDescription" placeholder="Describe your project"></textarea>
+                    <!-- Removed Project Description Input -->
 
                     <label for="projectLink">Project Link</label>
                     <input type="text" id="projectLink" placeholder="Enter link to your project">
-
-                    <label for="projectImages">Project Images (Upload multiple)</label>
-                    <input type="file" id="projectImages" multiple accept="image/*">
 
                     <div class="generate">
                         <button type="button" onclick="generateResume(event)">Generate Resume</button>
@@ -158,31 +177,21 @@
             </div>
             <div id="resumeContent"></div>
 
-            <!-- The Modal -->
-            <div id="imageModal" class="modal">
-                <span class="close" onclick="closeModal()">×</span>
-                <img class="modal-content" id="img01">
-                <div id="caption"></div>
-            </div>
+
         </div>
+        <footer>
+            <p>© 2025 Interactive Resume. All Rights Reserved.</p>
+          </footer>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script>
+        
         let generatedResumeHTML = '';
         let resumeData = null;
 
         async function generateResume(event) {
             event.preventDefault();
-
-            try {
-                const response = await fetch('data.json');
-                resumeData = await response.json();
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                alert('Failed to load additional details. Please try again.');
-                return;
-            }
 
             // Get form values
             const name = document.getElementById("name").value;
@@ -199,14 +208,30 @@
                     return { code: langCode, level: level, label: checkbox.labels[0].textContent };
                 });
 
-            const hobbies = document.getElementById("hobbies").value;
             const summary = document.getElementById("summary").value;
             const education = document.getElementById("education").value;
             const experience = document.getElementById("experience").value;
             const profilePic = document.getElementById("profilePicUpload").files[0];
-            const projectDescription = document.getElementById("projectDescription").value;
+
             let projectLink = document.getElementById("projectLink").value;
-            const projectImages = document.getElementById("projectImages").files;
+
+            // Validation
+            let missingFields = [];
+            if (!name) missingFields.push("Name");
+            if (!jobTitle) missingFields.push("Job Title");
+            if (!contact) missingFields.push("Contact");
+            if (!email) missingFields.push("Email");
+            if (!address) missingFields.push("Address");
+            if (!skills) missingFields.push("Skills");
+            if (!summary) missingFields.push("Summary");
+            if (!education) missingFields.push("Education");
+            if (!experience) missingFields.push("Experience");
+
+            if (missingFields.length > 0) {
+                alert("Please fill in the following fields:\n" + missingFields.join("\n"));
+                return;
+            }
+
 
             if (projectLink && !projectLink.startsWith('https://') && !projectLink.startsWith('http://')) {
                 projectLink = 'https://' + projectLink;
@@ -223,7 +248,6 @@
             }
 
             const skillsList = skills.split(',').map(skill => `<li>${skill.trim()}</li>`).join('');
-            const hobbiesList = hobbies.split('\n').map(hobby => `<li>${hobby.trim()}</li>`).join('');
 
             const languageList = languages.map(lang => `
                 <li>${lang.label}
@@ -238,43 +262,63 @@
 
             let projectSection = '';
 
-            if (projectDescription || projectImages.length > 0) {
-                projectSection += `<div class="section"><h3>Project Details</h3>`;
-
-                if (projectDescription) {
-                    projectSection += `<p>${projectDescription}</p>`;
-                }
-
-                if (projectLink) {
-                    projectSection += `<p><a href="${projectLink}" target="_blank">${projectLink}</a></p>`;
-                }
-
-                if (projectImages.length > 0) {
-                    projectSection += '<h4>Project Images</h4>';
-                    projectSection += '<div class="gallery">';
-                    for (let i = 0; i < projectImages.length; i++) {
-                        const imageURL = await new Promise((resolve, reject) => {
-                            const reader = new FileReader();
-                            reader.onload = (e) => resolve(e.target.result);
-                            reader.onerror = reject;
-                            reader.readAsDataURL(projectImages[i]);
-                        });
-
-                        projectSection += `
-                        <div class="gallery-item">
-                            <img src="${imageURL}" alt="Project Image ${i + 1}" onclick="openModal('${imageURL}', 'Project Image ${i + 1}')">
-                        </div>
-                    `;
-                    }
-
-                    projectSection += '</div>';
-                }
+            if (projectLink) {
+                projectSection += `<div class="section"><h3>Project link</h3>`;
+                projectSection += `<p><a href="${projectLink}" target="_blank">${projectLink}</a></p>`;
                 projectSection += '</div>';
             }
 
-            const achievementsList = resumeData && resumeData.achievements ?
-                resumeData.achievements.map(achievement => `<li>${achievement}</li>`).join('') :
-                '<li>No achievements listed.</li>';
+            // Fetch Projects from URL
+            const projectsURL = 'projects.json'; // Replace with your actual URL
+            let projectsList = '<p>No projects listed.</p>';
+
+            try {
+                const response = await fetch(projectsURL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const projectsData = await response.json();
+
+                if (Array.isArray(projectsData) && projectsData.length > 0) {
+                    projectsList = projectsData.map(project => `
+                        <div>
+                            <h4>${project.title}</h4>
+                            <p>${project.description}</p>
+                            ${project.link ? `<a href="${project.link}" target="_blank">View Project</a>` : ''}
+                        </div>
+                    `).join('');
+                    projectSection = `<div class="section"><h3>Projects</h3>${projectsList}</div>`; // Add whole section
+                } else {
+                    console.warn("No projects data found in the JSON file.");
+                }
+            } catch (error) {
+                console.error("Error fetching projects:", error);
+                projectsList = '<p>No projects listed.</p>'; // Error display
+            }
+
+              // Fetch Achievements from URL
+            const achievementsURL = 'achievements.json'; // Replace with your actual URL
+            let achievementsList = null; // Initialize to null
+            let achievementsSection = ''; // Initialize the achievements section
+
+            try {
+                const response = await fetch(achievementsURL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const achievementsData = await response.json();
+
+                if (Array.isArray(achievementsData) && achievementsData.length > 0) {
+                    achievementsList = achievementsData.map(achievement => `<li>${achievement}</li>`).join('');
+                    achievementsSection = `<div class="section"><h3>Achievements</h3><ul>${achievementsList}</ul></div>`;
+                } else {
+                    console.warn("No achievements data found in the JSON file.");
+                    achievementsList = null;
+                }
+            } catch (error) {
+                console.error("Error fetching achievements:", error);
+                achievementsList = null;
+            }
 
             const sortedLanguages = [...languages].sort((a, b) => {
                 if (a.code === 'en') return -1;
@@ -307,19 +351,16 @@
                                 <h3>Contact</h3>
                                  ${contactInfo}
                             </div>
-                           
+
                             <div class="section">
-                               <h3>Skills</h3>
+                                <h3>Skills</h3>
                                 <ul class="skills-ul">${skillsList}</ul>
                             </div>
                             <div class="section">
                                 <h3>Languages</h3>
                                 <ul class="languages-ul">${languageListSorted}</ul>
                             </div>
-                            <div class="section">
-                                <h3>Hobbies</h3>
-                                <ul>${hobbiesList}</ul>
-                            </div>
+
                             <div class="section">
                                 <h3>Professional Summary</h3>
                                 <p>${summary}</p>
@@ -335,11 +376,8 @@
                                 <h3>Experience</h3>
                                 <p>${experience}</p>
                             </div>
-                            <div class="section">
-                                <h3>Achievements</h3>
-                                <ul>${achievementsList}</ul>
-                            </div>
-                            ${projectSection}
+                            ${achievementsSection}
+                           ${projectSection}
                         </div>
                     </div>
                 </div>
@@ -372,7 +410,6 @@
             }
             const resumeContent = document.getElementById("resumeContent");
 
-            // Add the background gradient class to the resume content
             resumeContent.classList.add('pdf-background-gradient');
 
             html2pdf(resumeContent, {
@@ -393,6 +430,7 @@
             }).then(() => {
                 resumeContent.classList.remove('pdf-background-gradient');
             });
+            
         }
 
 
@@ -405,6 +443,7 @@
         function closeModal() {
             document.getElementById("imageModal").style.display = "none";
         }
+        
     </script>
 </body>
 
