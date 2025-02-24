@@ -6,68 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Resume Generator</title>
     <link rel="stylesheet" href="create.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 
 <body>
-    <section class="create">
+    <section class="hero">
         <header class="navbar">
             <button class="menu-toggle" id="mobile-menu" aria-label="Toggle Menu">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="logo">
-                <img src="Screenshot__51_-removebg-preview.png" alt="My Dynamic CV Logo">
+                <img src="logo-removebg-preview (1).png" alt="My Dynamic CV Logo">
             </div>
-            <div class="nav">
-            <ul class="nav-links" id="nav-menu">
-                <li><a href="register.html" id="home-link">Home</a></li>
-                <li><a href="#abouts" id="about-link">About</a></li>
-                <li><a href="#how-it" id="service-link">Service</a></li>
-                <li><a href="#testimonials" id="testimonial-link">Testimonial</a></li>
-                <li><a href="#faq" id="faq-link">FAQ</a></li>
-                <li><a href="#contact" id="contact-link">Contact</a></li>
-            </ul></div>
-            
+            <nav>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="register.html">Home</a></li>
+                    <li><a href="#abouts">About</a></li>
+                    <li><a href="#how-it">Service</a></li>
+                    <li><a href="#testimonials">Testimonial</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="theme-switcher">
+                <label class="switch">
+                    <input type="checkbox" id="themeSwitch">
+                    <span class="slider"></span>
+                </label>
+            </div>
         </header>
 
-        <div id="resume-section" class="resume-section">
+        <section id="resume-section" class="resume-section">
             <h2>Interactive Resume Creator</h2>
             <p>Welcome to the resume creation section! Here, you can add all your details to build your personalized
                 resume.
             </p>
-        </div>
+        </section>
 
         <div class="container">
-            <div class="form-container" id="resumeFormContainer">
-                <h2>Enter Your Details</h2>
+            <div class="main">
                 <form id="resumeForm">
                     <label for="profilePicUpload">Upload Profile Picture</label>
                     <input type="file" id="profilePicUpload">
+                    <br>
 
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Enter your name">
+                    <div class="row">
+                        <div>
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" placeholder="Enter your first name">
+                        </div>
+                        <div>
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" placeholder="Enter your last name">
+                        </div>
+                    </div>
 
-                    <label for="jobTitle">Job Title</label>
+                    <label class="word" for="jobTitle">Job Title</label>
                     <input type="text" id="jobTitle" placeholder="Enter your job title">
 
-                    <label for="contact">Contact</label>
+                    <label class="word" for="contact">Contact</label>
                     <input type="text" id="contact" placeholder="Enter your contact details">
 
-                    <label for="email">Email</label>
+                    <label class="word" for="email">Email</label>
                     <input type="email" id="email" placeholder="Enter your email">
 
-                    <label for="address">Address:</label>
+                    <label class="word" for="address">Address:</label>
                     <textarea id="address" name="address" rows="4" cols="40"
                         placeholder="Enter your full address..."></textarea>
 
-                    <label for="skills">Skills (comma separated)</label>
-                    <input type="text" id="skills"
-                        placeholder="Enter your skills (e.g., Adaptability, Problem-Solving)">
+                    <label class="word" for="skills">Skills</label>
+                    <br>
+                    <button type="button" onclick="addSkillField()">Add Skill</button>
+                    <div id="skills-container"></div>
 
-                    <label for="languages">Languages (Select up to 7)</label>
+                    <label class="word" for="languages">Languages (Select up to 5)</label>
                     <div class="language-dropdown-container">
                         <div class="language-checkbox-list">
                             <div class="language-checkbox-item">
@@ -151,22 +166,130 @@
                                     <option value="native">Native</option>
                                 </select>
                             </div>
-                            <!-- Add more languages as needed -->
                         </div>
                     </div>
 
-                    <label for="summary">Professional Summary</label>
+                    <label class="word" for="summary">Professional Summary</label>
+                    <p>Write 2-4 short & energetic sentences to interest the reader! Mention your role, experience &
+                        most importantly - your biggest achievements, best qualities and skills.</p>
                     <textarea id="summary" placeholder="Write a short professional summary"></textarea>
+                    <!-- Education Section -->
+                    <section class="education-section">
+                        <h2 class="education-header">Education</h2>
+                        <p class="education-description">A varied education on your resume sums up the value that you
+                            are learning
+                            and background will bring to the job.</p>
 
-                    <label for="education">Education</label>
-                    <textarea id="education" placeholder="Your education history"></textarea>
+                        <div id="educationContainer">
+                            <div class="education-entry">
 
-                    <label for="experience">Experience</label>
-                    <textarea id="experience" placeholder="Your work experience"></textarea>
+                                <!-- School and Degree Row -->
+                                <div class="form-group">
+                                    <label for="school">School</label>
+                                    <input type="text" class="form-control" id="school" placeholder="Enter school name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="degree">Degree</label>
+                                    <input type="text" class="form-control" id="degree" placeholder="Enter degree">
+                                </div>
 
-                    <!-- Removed Project Description Input -->
+                                <!-- Start Date, End Date, and City Row -->
+                                <div class="form-group date-group">
+                                    <div>
+                                        <label for="startDate">Start Date</label>
+                                        <input type="date" class="form-control" id="startDate">
+                                    </div>
+                                    <div>
+                                        <label for="endDate">End Date</label>
+                                        <input type="date" class="form-control" id="endDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" class="form-control" id="city" placeholder="Enter city">
+                                    </div>
+                                </div>
 
-                    <label for="projectLink">Project Link</label>
+
+                                <!-- Optional Rich Text Input -->
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control" id="description" rows="3"
+                                        placeholder="Enter description"></textarea>
+                                </div>
+                                <!-- Delete Icon -->
+                                <button class="remove-btn" onclick="removeEducation(this)">🗑</button>
+
+
+                                <!-- "Currently Pursuing" Toggle Switch -->
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">Currently Pursuing</label>
+                                    <label class="present-toggle">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="add-education-button" onclick="addEducation()">+ Add One More
+                            Education</button>
+                    </section>
+
+                    <section id="employment-history-section">
+
+                        <h2>Experience</h2>
+                        <p>Show your relevant experience (last 10 years). Use bullet points to note your achievements.
+                            If
+                            possible - use no./facts (Achieved X, measured by Y. by doing Z)
+                        </p>
+                        <div class="container" id="employmentContainer">
+                            <div class="employment-section">
+                                <button class="remove-btn" onclick="removeExperence
+                                (this)">🗑</button>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="jobTitle">Job Title</label>
+                                        <input type="text" id="jobTitle" name="job_title[]" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="employer">Employer</label>
+                                        <input type="text" id="employer" name="employer[]" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="startDate">Start Date (Month & Year)</label>
+                                        <select class="custom-month" id="startDate" name="start_date[]"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="endDate">End Date (Month & Year)</label>
+                                        <select class="custom-month" id="endDate" name="end_date[]"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" name="city[]" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group description-container">
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description[]" maxlength="200"></textarea>
+                                    <div class="character-count">
+                                        <span id="charCount">0</span>/200
+                                        <span class="face-emoji">🙁</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="add-btn" onclick="addEmployment()">+ Add One More Experence</button>
+                    </section>
+
+                    <label class="word" for="projectLink">Project Link</label>
                     <input type="text" id="projectLink" placeholder="Enter link to your project">
 
                     <div class="generate">
@@ -174,64 +297,91 @@
                         <button type="button" onclick="downloadPDF()" class="download-button">Download PDF</button>
                     </div>
                 </form>
+
             </div>
             <div id="resumeContent"></div>
-
-
         </div>
-        <footer>
-            <p>© 2025 Interactive Resume. All Rights Reserved.</p>
-          </footer>
+
     </section>
+
+    <footer>
+        <p>© 2025 Interactive Resume. All Rights Reserved.</p>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script>
-        
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
         let generatedResumeHTML = '';
-        let resumeData = null;
+
+        function addSkillField() {
+            const container = document.getElementById('skills-container');
+            const div = document.createElement('div');
+            div.className = 'skill-input';
+            div.innerHTML = `
+<input type="text" name="skills[]" placeholder="Enter skill" required>
+<button type="button" onclick="removeSkill(this)">Remove</button>
+`;
+            container.appendChild(div);
+        }
+
+        function removeSkill(button) {
+            button.parentElement.remove();
+        }
 
         async function generateResume(event) {
             event.preventDefault();
 
             // Get form values
-            const name = document.getElementById("name").value;
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const name = firstName + " " + lastName; // Combine first and last names
             const jobTitle = document.getElementById("jobTitle").value;
             const contact = document.getElementById("contact").value;
             const email = document.getElementById("email").value;
             const address = document.getElementById("address").value;
-            const skills = document.getElementById("skills").value;
+
+            const skillInputs = document.querySelectorAll('input[name="skills[]"]');
+            const skills = Array.from(skillInputs).map(input => input.value.trim()).filter(skill => skill !== "").join(', '); // Collect skills into a comma-separated string
 
             const languages = Array.from(document.querySelectorAll('input[name="languages"]:checked'))
                 .map(checkbox => {
                     const langCode = checkbox.value;
                     const level = document.getElementById(`level_${langCode}`).value;
-                    return { code: langCode, level: level, label: checkbox.labels[0].textContent };
+                    return {
+                        code: langCode,
+                        level: level,
+                        label: checkbox.labels[0].textContent
+                    };
                 });
-
             const summary = document.getElementById("summary").value;
-            const education = document.getElementById("education").value;
-            const experience = document.getElementById("experience").value;
+            //const education = document.getElementById("education").value;
             const profilePic = document.getElementById("profilePicUpload").files[0];
 
             let projectLink = document.getElementById("projectLink").value;
 
             // Validation
             let missingFields = [];
-            if (!name) missingFields.push("Name");
+            if (!profilePic) missingFields.push("profilePicUpload");
+            if (!firstName) missingFields.push("First Name");
+            if (!lastName) missingFields.push("Last Name");
             if (!jobTitle) missingFields.push("Job Title");
             if (!contact) missingFields.push("Contact");
             if (!email) missingFields.push("Email");
-            if (!address) missingFields.push("Address");
             if (!skills) missingFields.push("Skills");
             if (!summary) missingFields.push("Summary");
-            if (!education) missingFields.push("Education");
-            if (!experience) missingFields.push("Experience");
+            // if (!education) missingFields.push("Education");
+            if (!projectLink) missingFields.push("projectLink");
 
             if (missingFields.length > 0) {
                 alert("Please fill in the following fields:\n" + missingFields.join("\n"));
                 return;
             }
-
 
             if (projectLink && !projectLink.startsWith('https://') && !projectLink.startsWith('http://')) {
                 projectLink = 'https://' + projectLink;
@@ -245,20 +395,22 @@
                     reader.onerror = reject;
                     reader.readAsDataURL(profilePic);
                 });
-            }
-
-            const skillsList = skills.split(',').map(skill => `<li>${skill.trim()}</li>`).join('');
+            } const skillsList = skills.split(',').map(skill => `<li>${skill.trim()}</li>`).join('');
 
             const languageList = languages.map(lang => `
-                <li>${lang.label}
-                    <div class="language-dots">${getLanguageDots(lang.level)}</div>
-                </li>
-            `).join('');
+<li>${lang.label}
+<div class="language-dots">${getLanguageDots(lang.level)}</div>
+</li>
+`).join('');
 
             let contactInfo = `
-               <p>${contact}</p>
-               <p>${email}</p>
-            `;
+<p><i class="fas fa-phone"></i> ${contact}</p>
+<p><i class="fas fa-envelope"></i> ${email}</p>
+<div class="address-container">
+<i class="fas fa-map-marker-alt"></i>
+<p>${address}</p>
+</div>
+`;
 
             let projectSection = '';
 
@@ -281,12 +433,12 @@
 
                 if (Array.isArray(projectsData) && projectsData.length > 0) {
                     projectsList = projectsData.map(project => `
-                        <div>
-                            <h4>${project.title}</h4>
-                            <p>${project.description}</p>
-                            ${project.link ? `<a href="${project.link}" target="_blank">View Project</a>` : ''}
-                        </div>
-                    `).join('');
+<div>
+<h4>${project.title}</h4>
+<p>${project.description}</p>
+${project.link ? `<a href="${project.link}" target="_blank">View Project</a>` : ''}
+</div>
+`).join('');
                     projectSection = `<div class="section"><h3>Projects</h3>${projectsList}</div>`; // Add whole section
                 } else {
                     console.warn("No projects data found in the JSON file.");
@@ -294,9 +446,7 @@
             } catch (error) {
                 console.error("Error fetching projects:", error);
                 projectsList = '<p>No projects listed.</p>'; // Error display
-            }
-
-              // Fetch Achievements from URL
+            }     // Fetch Achievements from URL
             const achievementsURL = 'achievements.json'; // Replace with your actual URL
             let achievementsList = null; // Initialize to null
             let achievementsSection = ''; // Initialize the achievements section
@@ -329,63 +479,127 @@
             });
 
             const languageListSorted = sortedLanguages.map(lang => `
-                <li>${lang.label}
-                    <div class="language-dots">${getLanguageDots(lang.level)}</div>
-                </li>
-            `).join('');
+<li>${lang.label}
+<div class="language-dots">${getLanguageDots(lang.level)}</div>
+</li>
+`).join('');
+
+            // 1. Get Employment History Data
+            const employmentSections = document.querySelectorAll('.employment-section');
+            let employmentHistoryHTML = '';
+
+            if (employmentSections.length > 0) {
+                employmentHistoryHTML += `
+<div class="section">
+<h3>Experence</h3>
+`;
+
+                employmentSections.forEach(section => {
+                    const jobTitle = section.querySelector('input[name="job_title[]"]').value;
+                    const employer = section.querySelector('input[name="employer[]"]').value;
+                    const startDate = section.querySelector('select[name="start_date[]"]').value;
+                    const endDate = section.querySelector('select[name="end_date[]"]').value;
+                    const city = section.querySelector('input[name="city[]"]').value;
+                    const description = section.querySelector('textarea[name="description[]"]').value;
+
+                    employmentHistoryHTML += `
+<div>
+<h4>${jobTitle} at ${employer}</h4>
+<p class="employment-dates">${startDate} - ${endDate}, ${city}</p>
+<p>${description}</p>
+</div>
+`;
+                });
+
+                employmentHistoryHTML += `</div>`;
+            }
+
+            // Education Data
+            const educationEntries = document.querySelectorAll('.education-entry');
+            let educationHistoryHTML = '';
+
+            if (educationEntries.length > 0) {
+                educationHistoryHTML += `
+<div class="section">
+<h3>Education</h3>
+`;
+
+                educationEntries.forEach(entry => {
+                    const school = entry.querySelector('input[id="school"]').value;
+                    const degree = entry.querySelector('input[id="degree"]').value;
+                    const startDate = entry.querySelector('input[id="startDate"]').value;
+                    const endDate = entry.querySelector('input[id="endDate"]').value;
+                    const city = entry.querySelector('input[id="city"]').value;
+                    const description = entry.querySelector('textarea[id="description"]').value;
+                    const currentlyPursuing = entry.querySelector('input[type="checkbox"]').checked;
+
+                    const formattedDates = currentlyPursuing ? `${startDate} - Present` : `${startDate} - ${endDate}`;
+
+                    educationHistoryHTML += `
+<div>
+<h4>${degree} - ${school}</h4>
+<p class="education-dates">${formattedDates}, ${city}</p>
+<p>${description}</p>
+</div>
+`;
+                });
+
+                educationHistoryHTML += `</div>`;
+            }
 
             generatedResumeHTML = `
-                <div class="resume-container">
-                    <div class="top-section">
-                        <div class="profile-image-container">
-                            <img src="${profilePicURL ? profilePicURL : 'placeholder.jpg'}" alt="Profile Picture">
-                        </div>
-                        <div class="header-text">
-                            <h1>${name}</h1>
-                            <h4>${jobTitle}</h4>
-                        </div>
-                    </div>
-                    <div class="section1">
-                        <div class="left-section">
-                            <div class="section contact-info">
-                                <h3>Contact</h3>
-                                 ${contactInfo}
-                            </div>
+<div class="resume-container">
+<div class="top-section">
+<div class="profile-image-container">
+<img src="${profilePicURL ? profilePicURL : 'placeholder.jpg'}" alt="Profile Picture">
+</div>
+<div class="header-text">
+<h1>${name}</h1>
+<h4>${jobTitle}</h4>
+</div>
+</div>
+<div class="section1">
+<div class="left-section">
+<div class="section contact-info">
+<h3>Contact</h3>
+${contactInfo}
+</div>
 
-                            <div class="section">
-                                <h3>Skills</h3>
-                                <ul class="skills-ul">${skillsList}</ul>
-                            </div>
-                            <div class="section">
-                                <h3>Languages</h3>
-                                <ul class="languages-ul">${languageListSorted}</ul>
-                            </div>
+<div class="section">
+<h3>Skills</h3>
+<ul class="skills-ul">${skillsList}</ul>
 
-                            <div class="section">
-                                <h3>Professional Summary</h3>
-                                <p>${summary}</p>
-                            </div>
-                        </div>
-                        <div class="right-section">
+</div>
+<div class="section">
+<h3>Languages</h3>
+<ul class="languages-ul">${languageListSorted}</ul>
+</div>
 
-                            <div class="section">
-                                <h3>Education</h3>
-                                <p>${education}</p>
-                            </div>
-                            <div class="section">
-                                <h3>Experience</h3>
-                                <p>${experience}</p>
-                            </div>
-                            ${achievementsSection}
-                           ${projectSection}
-                        </div>
-                    </div>
-                </div>
-            `;
+<div class="section">
+<h3>Professional Summary</h3>
+<p>${summary}</p>
+</div>
+</div> <div class="right-section">
+
+
+${educationHistoryHTML}
+${employmentHistoryHTML}   
+
+
+
+${achievementsSection}
+${projectSection}
+</div>
+</div>
+</div>
+`;
 
             document.getElementById("resumeContent").innerHTML = generatedResumeHTML;
             document.getElementById("resumeContent").classList.add("visible");
             document.getElementById("resumeContent").style.display = "block";
+
+
+
         }
 
         function getLanguageDots(level) {
@@ -430,20 +644,185 @@
             }).then(() => {
                 resumeContent.classList.remove('pdf-background-gradient');
             });
-            
+
+        }
+
+        /* Theme Switcher Logic */
+        const themeSwitch = document.getElementById('themeSwitch');
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
         }
 
 
-        function openModal(fullImage, altText) {
-            document.getElementById("imageModal").style.display = "block";
-            document.getElementById("img01").src = fullImage;
-            document.getElementById("caption").innerHTML = altText;
+        //    // Apply stored theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                setTheme(storedTheme);
+                themeSwitch.checked = storedTheme === 'dark';  // Update the switch state
+            }
+
+            // Event listener for theme switch
+            themeSwitch.addEventListener('change', () => {
+                const theme = themeSwitch.checked ? "dark" : "light";
+                setTheme(theme);
+            });
+        });
+
+        /* ------------------ ADDED JAVASCRIPT FUNCTIONS ------------------ */
+        // Function to Add Education Entry
+        function addEducation() {
+            const educationContainer = document.getElementById('educationContainer');
+            const newEducationEntry = document.createElement('div');
+            newEducationEntry.classList.add('education-entry');
+            newEducationEntry.innerHTML = `
+          <div class="form-group">
+          <label for="school">School</label>
+          <input type="text" class="form-control" id="school" placeholder="Enter school name">
+          </div>
+          <div class="form-group">
+          <label for="degree">Degree</label>
+          <input type="text" class="form-control" id="degree" placeholder="Enter degree">
+          </div>
+          <div class="form-group date-group">
+          <div>
+          <label for="startDate">Start Date</label>
+          <input type="date" class="form-control" id="startDate">
+          </div>
+          <div>
+          <label for="endDate">End Date</label>
+          <input type="date" class="form-control" id="endDate">
+          </div>
+          </div>
+          <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" placeholder="Enter city">
+          </div>
+          <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" rows="3" placeholder="Enter description"></textarea>
+          </div>
+          <button class="delete-button" onclick="removeEducation(this)">🗑</button>
+          <div class="form-group form-check">
+          <label class="form-check-label">Currently Pursuing</label>
+          <label class="present-toggle">
+          <input type="checkbox">
+          <span class="toggle-slider"></span>
+          </label>
+          </div>
+          `;
+            educationContainer.appendChild(newEducationEntry);
         }
 
-        function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
+        function removeEducation(button) {
+            const educationEntry = button.closest('.education-entry');
+            educationEntry.remove();
         }
-        
+
+        function addEmployment() {
+            let container = document.getElementById("employmentContainer");
+
+            let newSection = document.createElement("div");
+            newSection.classList.add("employment-section");
+            newSection.innerHTML = `
+          <button class="remove-btn" onclick="removeExperence(this)">🗑</button>
+          
+          <div class="form-row">
+          <div class="form-group">
+          <label for="jobTitle">Job Title</label>
+          <input type="text" id="jobTitle" name="job_title[]" required>
+          </div>
+          
+          <div class="form-group">
+          <label for="employer">Employer</label>
+          <input type="text" id="employer" name="employer[]" required>
+          </div>
+          </div>
+          
+          <div class="form-row">
+          <div class="form-group">
+          <label for="startDate">Start Date (Month & Year)</label>
+          <select class="custom-month" id="startDate" name="start_date[]"></select>
+          </div>
+          
+          <div class="form-group">
+          <label for="endDate">End Date (Month & Year)</label>
+          <select class="custom-month" id="endDate" name="end_date[]"></select>
+          </div>
+          
+          <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city[]" required>
+          </div>
+          </div>
+          
+          <div class="form-group description-container">
+          <label for="description">Description</label>
+          <textarea id="description" name="description[]" maxlength="200"></textarea>
+          <div class="character-count">
+          <span id="charCount">0</span>/200
+          <span class="face-emoji">🙁</span>
+          </div>
+          </div>
+          `;
+
+            container.appendChild(newSection);
+            fillMonthDropdowns();
+            attachTextAreaListeners(); // Attach listeners after adding new section
+        }
+
+        function removeExperence(button) {
+            let section = button.parentElement;
+            section.remove();
+        }
+
+        function fillMonthDropdowns() {
+            const dropdowns = document.querySelectorAll('.custom-month');
+            dropdowns.forEach(dropdown => {
+                dropdown.innerHTML = '<option value="" disabled selected>Select Month & Year</option>';
+                let currentYear = new Date().getFullYear();
+                for (let year = currentYear; year >= 1980; year--) {
+                    for (let month = 1; month <= 12; month++) {
+                        let monthText = new Date(year, month - 1).toLocaleString('default', {
+                            month: 'long'
+                        });
+                        dropdown.innerHTML += `<option value="${year}-${String(month).padStart(2, '0')}">${monthText} ${year}</option>`;
+                    }
+                }
+            });
+        }
+
+        function attachTextAreaListeners() {
+            const textareas = document.querySelectorAll('textarea[name="description[]"]');
+            textareas.forEach(textarea => {
+                textarea.addEventListener('input', function () {
+                    updateCharacterCount(this);
+                });
+                // Initialize character count on load
+                updateCharacterCount(textarea);
+            });
+        }
+
+        function updateCharacterCount(textarea) {
+            const charCountSpan = textarea.closest('.employment-section').querySelector('#charCount');
+            const faceEmojiSpan = textarea.closest('.employment-section').querySelector('.face-emoji');
+            const count = textarea.value.length;
+            charCountSpan.textContent = count;
+
+            if (count < 200) {
+                faceEmojiSpan.textContent = '🙁'; // Sad face
+            } else {
+                faceEmojiSpan.textContent = '😊'; // Happy face
+            }
+        }
+
+        // Initialize date dropdowns on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fillMonthDropdowns();
+            attachTextAreaListeners();
+        });
     </script>
 </body>
 

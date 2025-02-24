@@ -1,23 +1,19 @@
-    /* General Styles */
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        color: #333;
-        line-height: 1.6;
-        transition: background-color 0.3s ease;
-        /* Subtle gradient */
-    }
-    .nav{
-        width: 40%;
-        margin: 0% auto;
-    }
-/* General Navbar Styling */
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    /* background-color: #f8f9fa; */
+    /* color: #343a40; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
 .navbar {
     display: flex;
     z-index: 1;
     align-items: center;
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
     top: 0%;
     justify-content: space-between;
@@ -28,31 +24,25 @@
     box-sizing: border-box;
 }
 
-/* Logo Styling */
 .logo img {
-    height: 86px;
-    width: 142%;
+    width: 100%;
+    height: 92px;
     justify-content: unset;
     cursor: pointer;
     transition: transform 0.3sease;
-    display: flex
-;
+    display: flex;
 }
 
-/* Navigation Links Styling */
+.logo {
+    width: 18%;
+}
+
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
-}
-
-.nav-links li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links li a:hover,
@@ -61,7 +51,18 @@
     color: #fff;
 }
 
-/* Theme Switcher Styling */
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3sease, color 0.3sease;
+}
+
+
+
+/* Theme Switcher */
 .theme-switcher {
     display: flex;
     align-items: center;
@@ -99,32 +100,29 @@
     width: 14px;
     left: 3px;
     bottom: 3px;
-    background-color: rgb(2, 2, 2);
+    background-color: black;
     transition: 0.4s;
     border-radius: 50%;
 }
 
 input:checked+.slider {
-    background-color: #007bff;
+    background-color: #ff4400;
 }
 
 input:checked+.slider:before {
     transform: translateX(20px);
 }
+
 /* Theme Variables */
 :root {
     --background: #ffffff;
     --text: #333333;
-    --nav-bg: #f0f0f0;
-    --nav-text: #333333;
     --highlight: #007bff;
 }
 
 [data-theme="dark"] {
     --background: #121212;
     --text: #ffffff;
-    --nav-bg: #333333;
-    --nav-text: #ffffff;
     --highlight: #ff6f61;
 }
 
@@ -133,21 +131,22 @@ body {
     color: var(--text);
 }
 
-
-.switch {
+/* Switch Styles */
+.theme-switcher .switch {
     position: relative;
     display: inline-block;
-    width: 34px;
-    height: 20px;
+    width: 60px;
+    margin: 1% 6%;
+    height: 34px;
 }
 
-.switch input {
+.theme-switcher .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.slider {
+.theme-switcher .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -155,36 +154,255 @@ body {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 20px;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
 }
 
-.slider:before {
+.theme-switcher .slider:before {
     position: absolute;
     content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
+    height: 25px;
+    width: 24px;
+    left: 4px;
+    bottom: 4px;
     background-color: white;
-    transition: 0.4s;
+    -webkit-transition: .4s;
+    transition: .4s;
     border-radius: 50%;
 }
 
 input:checked+.slider {
-    background-color: var(--highlight);
-    color: #ccc;
+    background-color: #f34121;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
 }
 
 input:checked+.slider:before {
-    transform: translateX(14px);
-}/* Footer */
-footer {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* Resume Section */
+#resume-section {
     text-align: center;
-    margin-top: 50px;
+    padding: 2rem;
+}
+
+/* Container */
+
+
+/* Form Styles */
+label {
+    display: block;
+    font-weight: 500;
+    font-size: 19px;
+}
+
+.main {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: auto;
+    padding: 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+input[type="file"] {
+    margin-top: 0.5rem;
+}
+
+/* Button Styles */
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.generate {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.generate button {
+    margin: 0 1rem;
+}
+
+/* Language Dropdown Styles */
+.language-dropdown-container {
+    margin-top: 0.5rem;
+}
+
+.language-checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.language-checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Resume Section Styles */
+.resume-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#resumeContent {
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    display: none;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #343a40;
+    color: #fff;
+}
+
+/* Resume Container Styles */
+.resume-container {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Top Section Styles */
+.top-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-image-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.header-text {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.header-text h1 {
+    margin: 0;
+    color: #333;
+}
+
+.header-text h4 {
+    margin: 5px 0;
+    color: #666;
+    font-style: italic;
+}
+
+/* Section Styles */
+.section1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section h3 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.section p,
+.section ul {
+    margin: 0;
+    padding: 0;
+    color: #555;
+}
+
+.section ul {
+    /* list-style: none; */
+    padding-left: 20px;
+}
+
+.section li {
+    margin-bottom: 5px;
+}
+
+/* Language Proficiency Dots */
+.language-dots {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+/* PDF Background Gradient */
+.pdf-background-gradient {
+    background: linear-gradient(to right, #f0f2f5, #e2e8f0);
 }
 
 /* Mobile Menu Button Styles */
@@ -196,472 +414,14 @@ footer {
     font-size: 30px;
     color: #333;
 }
-    @keyframes gradientShift {
-        0% {
-            background-position: 0% 50%;
-        }
 
-        100% {
-            background-position: 100% 50%;
-        }
-    }
-
-
-    .container {
-        width: 90%;
-        max-width: 1200px;
-        margin: 20px auto;
-        padding: 20px;
-        transition: transform 0.3s ease;
-        /* Added transition */
-    }
-
-    /* Resume Form Styles */
-    .form-container {
-        margin: auto;
-        padding: 5%;
-        width: 66%;
-        border-radius: 8px;
-        box-shadow: 0 0 44px rgba(0, 0, 0, 1.1);
-        transition: background-color 0.3s ease;
-        /* Added transition */
-    }
-
-    .form-container label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .form-container input[type="text"],
-    .form-container input[type="email"],
-    .form-container textarea {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        box-sizing: border-box;
-        transition: border-color 0.3s ease;
-        /* Added transition */
-    }
-
-    .form-container button {
-        background-color: #5cb85c;
-        color: white;
-        padding: 12px 19px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        /* Added transition */
-    }
-
-  
-    /* Updated Resume Styles */
-    .resume-container {
-        margin: auto;
-        padding: 1% -1%;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        width: 90%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        transition: box-shadow 0.3s ease;
-        /* Added transition */
-    }
-
-    /* New Styles for Layout */
-    .top-section {
-        color: #333;
-        display: flex;
-        text-align: left;
-        text-transform: uppercase;
-        background: #a5c8b2;
-        transition: background-color 0.3s ease;
-        /* Added transition */
-    }
-
-
-    .profile-image-container {
-        width: 32%;
-        margin: 3% 3%;
-        border-radius: 50%;
-        overflow: hidden;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        transition: box-shadow 0.3s ease;
-        /* Added transition */
-    }
-
-    .profile-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.3s ease;
-        /* Added transition */
-    }
-
-    .header-text {
-        text-align: center;
-        width: 76%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        font-size: 24px;
-        transition: color 0.3s ease;
-        /* Added transition */
-    }
-
-
-    .header-text h1 {
-        font-size: 2em;
-        margin-bottom: 5px;
-        color: #333;
-        transition: color 0.3s ease;
-        /* Added transition */
-    }
-
-    .header-text h4 {
-        font-size: 1.2em;
-        color: #666;
-        transition: color 0.3s ease;
-        /* Added transition */
-    }
-
-    .left-section {
-        background-color: #e9f5f3;
-        width: 46%;
-        padding: 6% 5%;
-        box-sizing: border-box;
-        height: auto;
-        transition: background-color 0.3s ease;
-        /* Added transition */
-    }
-
-    .right-section {
-        width: 49%;
-        box-sizing: border-box;
-        padding: 6% 5%;
-        transition: background-color 0.3s ease;
-        /* Added transition */
-    }
-
-    /* Common Section Styles */
-    .section {
-        margin-bottom: 19px;
-        transition: margin-bottom 0.3s ease;
-        /* Added transition */
-    }
-
-    .section h3 {
-        color: #5cb85c;
-        border-bottom: 2px solid #ddd;
-        padding-bottom: 5px;
-        margin-bottom: 10px;
-        font-size: 24px;
-        text-transform: uppercase;
-        transition: color 0.3s ease;
-        /* Added transition */
-    }
-
-    .section ul {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .section ul li {
-        margin-bottom: 5px;
-        transition: margin-bottom 0.3s ease;
-        /* Added transition */
-    }
-
-    .contact-info p {
-        margin: 5px 0;
-        transition: margin 0.3s ease;
-        /* Added transition */
-    }
-
-    /* Styles for the Language Dots */
-    .language-dots {
-        display: inline-block;
-        margin-left: 10px;
-    }
-
-    .language-checkbox-list {
-        display: flex;
-        flex-wrap: wrap;
-
-    }
-
-    .language-checkbox-item {
-        display: flex;
-        gap: 2% 0%;
-        padding: -1% 4%;
-        padding: 1% 6%;
-    }
-
-
-    .dot {
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #888;
-        margin-right: 3px;
-    }
-
-    .numbered-list {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .numbered-list li {
-        margin-bottom: 10px;
-        position: relative;
-        padding-left: 30px;
-    }
-
-    .numbered-list li:before {
-        content: attr(data-number);
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 25px;
-        height: 25px;
-        background-color: #a9d9d0;
-        color: #333;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 25px;
-        font-size: 14px;
-    }
-
-    /* Download Button Styles */
-    .download-button {
-        background-color: #5cb85c;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        display: block;
-        text-decoration: none;
-        text-align: center;
-        transition: background-color 0.3s ease;
-        /* Added transition */
-    }
-
-    .download-button:hover {
-        background-color: #4cae4c;
-    }
-
-    /* Skills */
-    .skills-ul {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .skills-ul li {
-        position: relative;
-        padding-left: 15px;
-    }
-
-    .skills-ul li:before {
-        content: "\2022";
-        position: absolute;
-        left: 0;
-    }
-
-    .languages-ul {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .languages-ul li {
-        margin-bottom: 5px;
-    }
-
-    .section1 {
-        display: flex;
-    }
-
-    .generate {
-        display: flex;
-        gap: 5%;
-        margin: 5% 0%;
-    }
-
-    .form-container.hidden {
-        display: none;
-    }
-
-    #resumeContent.visible {
-        margin-top: 6%;
-        display: block;
-    }
-
-    #resumeContent {
-        display: none;
-        /* Initially hidden */
-    }
-
-    /* Styles for the Image Gallery */
-    .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .gallery-item {
-        width: 100px;
-        height: 100px;
-        overflow: hidden;
-        cursor: pointer;
-        border: 1px solid #ddd;
-    }
-
-    .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover img {
-        transform: scale(1.1);
-    }
-
-    /* Modal Styles */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.9);
-    }
-
-    .modal-content {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 700px;
-    }
-
-    .modal-content,
-    #caption {
-        -webkit-animation-name: zoom;
-        -webkit-animation-duration: 0.6s;
-        animation-name: zoom;
-        animation-duration: 0.6s;
-    }
-
-    @-webkit-keyframes zoom {
-        from {
-            -webkit-transform: scale(0)
-        }
-
-        to {
-            -webkit-transform: scale(1)
-        }
-    }
-
-    @keyframes zoom {
-        from {
-            transform: scale(0)
-        }
-
-        to {
-            transform: scale(1)
-        }
-    }
-
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 35px;
-        color: #f1f1f1;
-        font-size: 40px;
-        font-weight: bold;
-        transition: 0.3s;
-        cursor: pointer;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    /* Media Queries for Responsiveness */
-    @media (max-width: 768px) {
-        .form-container {
-            width: 90%;
-            /* Adjust form width for smaller screens */
-            padding: 3%;
-        }
-
-        .container {
-            width: 95%;
-            /* Adjust container width */
-        }
-
-        .profile-image-container {
-            width: 40%;
-            /* Increase image size on smaller screens */
-            margin: 2%;
-        }
-
-        .section1 {
-            flex-direction: column;
-            /* Stack the left and right sections */
-        }
-
-        .left-section,
-        .right-section {
-            width: 100%;
-            /* Make sections full width */
-            padding: 4%;
-        }
-
-        .header-text {
-            width: 58%;
-        }
-    }
-
-    /* Style for the resume-section */
-    #resume-section {
-        text-align: center;
-        padding: 20px;
-    }
-
-    /* Beautiful Background Gradient for create section */
-    
-    button.btns {
-        /* height: 3vw; */
-        background: #c26c26;
-        color: wheat;
-        padding: 0.5% 2%;
-        font-weight: bold;
-    }
-    .form-container{
-        background-color: rgb(248, 25, 230);
-    }
-    
-/* Mobile Menu Styles */
+/* Media Queries */
 @media (max-width: 992px) {
     .nav-links {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 86px;
+        top: 60px;
         left: 0;
         width: 100%;
         background-color: #f4f4f4;
@@ -677,19 +437,447 @@ footer {
     .menu-toggle {
         display: block;
     }
+
+    .navbar {
+        padding: 1rem;
+    }
+
+    .nav-links li a {
+        padding: 0.5rem;
+        display: block;
+    }
 }
 
-/* For Very Small Screens */
-@media (max-width: 480px) {
-       footer {
-        font-size: 14px;
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
     }
-  .navbar {
 
+    .generate {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .generate button {
+        margin: 0.5rem 0;
+    }
+
+    .top-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-image-container {
+        margin: auto auto 20px;
+    }
+
+    .section1 {
+        flex-direction: column;
+    }
+
+    .left-section,
+    .right-section {
         width: 100%;
+        text-align: left;
+    }
+}
+
+
+
+/* New Styles for Layout */
+.top-section {
+    color: #333;
+    display: flex;
+    text-align: left;
+    text-transform: uppercase;
+    background: #a5c8b2;
+    transition: background-color 0.3s ease;
+    /* Added transition */
+}
+
+
+.profile-image-container {
+    /* width: 32%; */
+    margin: 3% 3%;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+    /* Added transition */
+}
+
+form#resumeForm {
+    background: #bf8bef;
+    padding: 5% 5%;
+}
+
+
+
+.left-section {
+    background-color: #e9f5f3;
+    /* width: 50%; */
+    padding: 3% 2%;
+    box-sizing: border-box;
+    height: auto;
+    transition: background-color 0.3s ease;
+    /* Added transition */
+}
+
+.right-section {
+    /* width: 50%; */
+    box-sizing: border-box;
+    padding: 3% 2%;
+    transition: background-color 0.3s ease;
+    /* Added transition */
+}
+
+:root {
+    --bg-color: #e8eff6;
+    --text-color: #343a40;
+    --accent-color: #007bff;
+}
+
+[data-theme="dark"] {
+    --bg-color: #000000;
+    --text-color: #f8f9fa;
+    --accent-color: #80bdff;
+}
+
+.hero {
+    font-family: 'Poppins', sans-serif;
+    /* background-color:black; */
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hero {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* ... other navbar styles ... */
+}
+
+.skill-container {
+    margin-top: 10px;
+}
+
+.skill-input {
+    margin: 5px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row div {
+    flex: 1;
+}
+
+.contact-info p {
+    margin-bottom: 5px;
+}
+
+.contact-info i {
+    margin-right: 5px;
+}
+
+.address-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.employment-section {
+    position: relative;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    /* color: #555; */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+
+.add-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 3% 0%;
+    font-size: 1em;
+}
+
+.add-btn:hover {
+    background-color: #0056b3;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.remove-btn:hover {
+    background-color: #d32f2f;
+}
+
+.character-count {
+    text-align: right;
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 5px;
+}
+
+.char-limit-message {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 5px;
+}
+
+.face-emoji {
+    font-size: 1.2em;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.skills-ul {}
+
+.skills-ul li {
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+/* Styles for Character Count */
+.character-count {
+    text-align: right;
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 5px;
+}
+
+.word {
+    font-size: 24px;
+}
+
+
+.education-header {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.education-description {
+    font-size: 0.9rem;
+    /* color: #6c757d; */
+}
+
+.education-entry {
+    position: relative;
+}
+
+.date-group {
+    display: flex;
+    gap: 10px;
+}
+
+.delete-button {
+    background-color: transparent;
+    color: #dc3545;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.add-education-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 3% 0%;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+/* Style for currently pursing and the toggle design */
+.present-toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    /* Adjust width as needed */
+    height: 34px;
+    /* Adjust height as needed */
+}
+
+.present-toggle input {
+    opacity: 0;
+    /* Hide default checkbox */
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.toggle-slider {
+    background-color: #2196F3;
+    /* Blue color when toggled */
+}
+
+input:focus+.toggle-slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.toggle-slider:before {
+    transform: translateX(26px);
+}
+
+/* Example:  Adjusting Profile Image and General Container on Smaller Screens */
+@media (max-width: 576px) {
+
+    /* Extra small devices (phones) */
+    .profile-image-container {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
     }
 
-    .logo img {
-        width: 93%;
+    .row {
+        flex-direction: column;
+    }
+
+    label {
+        font-size: 16px;
+        /* Smaller labels on phones */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        padding: 0.5rem;
+        /* Reduced padding for inputs */
+    }
+
+    .generate button {
+        font-size: 0.9rem;
+        /* Smaller button text */
+        padding: 0.5rem 1rem;
+        /* Reduced button padding */
+    }
+
+    .resume-container {
+        padding: 10px;
+        /* Less padding on small screens */
+    }
+}
+
+/* Example:  Tablet-Specific Adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    /* Tablets */
+    .section1 {
+        flex-direction: row;
+        /* Keep sections side-by-side */
+    }
+
+    .left-section,
+    .right-section {
+        width: 45%;
+        /* Smaller width than on larger screens */
+        padding: 2%;
+        /* Less padding */
+    }
+}
+
+/* Example: Form elements stacked vertically */
+@media (max-width: 576px) {
+    .form-row {
+        flex-direction: column;
+        /* Stack form groups vertically */
+        gap: 10px;
+    }
+
+    .form-group {
+        width: 100%;
+        flex-direction: column;
+        /* Make form groups take full width */
+    }
+
+    input#profilePicUpload {
+        width: 100%;
     }
 }

@@ -315,7 +315,7 @@ body {
 
 /* Introduction Section */
 .introduction {
-    color: #d32d9b;
+    /* color: #d32d9b; */
     font-family: 'Lora', serif;
     text-align: center;
     padding: 3%;
@@ -337,7 +337,8 @@ body {
 
 .introduction h2 {
     font-size: 32px;
-    color: #d32d9b;
+    /* color: #d32d9b; */
+
 }
 
 #dynamic-role {
@@ -898,7 +899,7 @@ footer {
 }
 
 button:hover {
-    color: #000;
+    color: #fff5f5;
 }
 
 .prev {
@@ -959,7 +960,7 @@ header h1 .about {
 .about-text h2 {
     font-size: 28px;
     margin-bottom: 10px;
-    color: #ffeb3b;
+    color: #007bff;
 }
 
 .about-text p {
@@ -978,7 +979,7 @@ header h1 .about {
 
 .facts-container h3 {
     font-size: 24px;
-    color: #ffeb3b;
+    color:#007bff;
 }
 
 #fact {
@@ -988,8 +989,8 @@ header h1 .about {
 
 .btns {
     padding: 12px 20px;
-    background-color: #ffeb3b;
-    color: #333;
+    background-color: #007bff;
+    color: #ffffff;
     font-size: 18px;
     border: none;
     border-radius: 8px;
@@ -999,7 +1000,7 @@ header h1 .about {
 }
 
 .btns:hover {
-    background-color: #ffd700;
+    background-color: #007bff;
 }
 
 /* Responsive Design */
@@ -1034,11 +1035,11 @@ html {
     text-align: center;
     animation: fadeIn 0.6s ease-in-out;
 }
-
+/* 
 h2 {
     margin-bottom: 15px;
-    color: #ff4081;
-}
+    color: #007bff;
+} */
 
 .input-group {
     margin-bottom: 15px;
@@ -1076,7 +1077,7 @@ textarea:focus {
 }
 
 .submit-btn {
-    background: #ff4081;
+    background:#007bff;
     color: white;
     border: none;
     padding: 12px;
@@ -1099,7 +1100,7 @@ textarea:focus {
 .success-message {
     display: none;
     padding: 12px;
-    background: #4caf50;
+    background: #007bff;
     color: white;
     margin-top: 15px;
     border-radius: 6px;
@@ -1140,8 +1141,8 @@ textarea:focus {
 
 .create-btn {
     padding: 8px 11px;
-    background-color: #00BCD4;
-    color: #333;
+    background-color:#007bff;
+    color: #fdf3f3;
     font-size: 18px;
     border: none;
     border-radius: 8px;
