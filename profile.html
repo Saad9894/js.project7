@@ -29,6 +29,7 @@
             display: flex;
             z-index: 1000;
             align-items: center;
+            gap: 7%;
             width: 100%;
             justify-content: space-between;
             background-color: #fff;
@@ -175,7 +176,7 @@ input:checked+.slider {
         }
 
         /* Button Styles */
-        button {
+        /* button {
             padding: 10px 15px;
             background-color: #4CAF50;
             color: white;
@@ -192,7 +193,7 @@ input:checked+.slider {
 
         button.logout {
             background-color: #f44336;
-        }
+        } */
 
         /* Container Styles */
         .container {
@@ -311,13 +312,13 @@ input:checked+.slider {
             margin-bottom: 10px;
         }
 
-        input,
+        /* input,
         button {
             display: block;
             width: 80%;
             margin: 10px auto;
             padding: 8px;
-        }
+        } */
 
         /* Profile Dropdown Styles */
         .profile-dropdown {
@@ -593,13 +594,13 @@ input:checked+.slider {
             margin-bottom: 10px;
         }
 
-        input,
+        /* input,
         button {
             display: block;
             width: 80%;
             margin: 10px auto;
             padding: 8px;
-        }
+        } */
 
         /* Profile Dropdown Styles */
         .profile-dropdown {
@@ -824,15 +825,20 @@ input:checked+.slider {
                 <li><a href="#testimonials">Testimonial</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <button class="create-btn" onclick="checkLoginAndRedirect()">Create Resume</button>
+                <div class="theme-switcher">
+                    <label class="switch">
+                        <input type="checkbox" id="themeSwitch">
+                        <span class="slider"></span>
+                    </label>
+                </div> 
             </ul>
 
-            <div class="login">
-                <div id="auth-buttons">
-                    <a href="register.html"><button class="create-btn" id="login-button">Login</button></a>
-                </div>
-            </div>
         </nav>
+        <div class="login">
+            <div id="auth-buttons">
+                <a href="register.html"><button class="create-btn" id="login-button">Login</button></a>
+            </div>
+        </div>
         <div class="profile profile-dropdown" id="profile-section" style="display: none;" onclick="toggleDropdown()">
             <div class="icon">
                 <span id="username-display"></span>
@@ -846,12 +852,7 @@ input:checked+.slider {
                 <a href="profile.html">profile</a>
             </div>
         </div>
-        <div class="theme-switcher">
-            <label class="switch">
-                <input type="checkbox" id="themeSwitch">
-                <span class="slider"></span>
-            </label>
-        </div>
+      
     </header>
 
     <div class="container">
