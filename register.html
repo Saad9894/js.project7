@@ -4,281 +4,474 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Resume - Login/Register</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Montserrat:wght@400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Login/Signup Form</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        /* (Your CSS styles from the original register.html) */
+        /* Styles (same as before - omitted for brevity) */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            text-decoration: none;
+            list-style: none;
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(45deg, #012a4a, #013a63);
-            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
+            background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+        }
+
+        .container {
+            position: relative;
+            width: 850px;
+            height: 550px;
+            background: #fff;
+            margin: 20px;
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, .2);
             overflow: hidden;
         }
 
-        #auth-section {
-            background: rgba(1, 58, 99, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            width: 400px;
-            text-align: center;
-            transition: transform 0.3s ease-in-out;
+        .container h1 {
+            font-size: 36px;
+            margin: -10px 0;
         }
 
-        #auth-section:hover {
-            transform: scale(1.03);
+        .container p {
+            font-size: 14.5px;
+            margin: 15px 0;
         }
 
-        h3 {
-            margin-bottom: 30px;
-            color: #98c1d9;
-            font-size: 2.2em;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
-        input {
-            width: 92%;
-            padding: 15px;
-            border: none;
-            border-bottom: 2px solid #61a5c2;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 16px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        input:focus {
-            outline: none;
-            border-bottom-color: #98c1d9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        input::placeholder {
-            color: #98c1d9;
-        }
-
-        label {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            color: #98c1d9;
-            transition: 0.3s;
-            pointer-events: none;
-        }
-
-        input:focus+label,
-        input:not(:placeholder-shown)+label {
-            top: -8px;
-            left: 12px;
-            font-size: 12px;
-            color: #61a5c2;
-            background-color: #012a4a;
-            padding: 0 5px;
-            border-radius: 4px;
-        }
-
-        button {
+        form {
             width: 100%;
-            padding: 15px;
-            border: none;
-            background: #61a5c2;
-            color: #012a4a;
-            font-size: 18px;
-            font-weight: bold;
+        }
+
+        .form-box {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-align: center;
+            padding: 40px;
+            z-index: 1;
+            transition: .6s ease-in-out 1.2s, visibility 0s 1s;
+        }
+
+        .container.active .form-box {
+            right: 50%;
+        }
+
+        .form-box.register {
+            visibility: hidden;
+        }
+
+        .container.active .form-box.register {
+            visibility: visible;
+        }
+
+        .input-box {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 13px 50px 13px 20px;
+            background: #eee;
             border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .input-box input::placeholder {
+            color: #888;
+            font-weight: 400;
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        .forgot-link {
+            margin: -15px 0 15px;
+        }
+
+        .forgot-link a {
+            font-size: 14.5px;
+            color: #333;
+        }
+
+        .btn {
+            width: 100%;
+            height: 48px;
+            background: #7494ec;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            border: none;
             cursor: pointer;
-            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
         }
 
-        button:hover {
-            background: #98c1d9;
-            color: #013a63;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        .social-icons {
+            display: flex;
+            justify-content: center;
         }
 
-        p {
-            margin-top: 20px;
-            color: #98c1d9;
-            font-size: 1.1em;
+        .social-icons a {
+            display: inline-flex;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 24px;
+            color: #333;
+            margin: 0 8px;
         }
 
-        a {
-            color: #61a5c2;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
+        .toggle-box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
         }
 
-        a:hover {
-            text-decoration: underline;
-            color: #98c1d9;
+        .toggle-box::before {
+            content: '';
+            position: absolute;
+            left: -250%;
+            width: 300%;
+            height: 100%;
+            background: #7494ec;
+            /* border: 2px solid red; */
+            border-radius: 150px;
+            z-index: 2;
+            transition: 1.8s ease-in-out;
         }
 
-        #login-section.active,
-        #register-form.active {
-            display: block;
-            animation: slideIn 0.5s ease-out;
+        .container.active .toggle-box::before {
+            left: 50%;
         }
 
-        #login-section,
-        #register-form {
-            display: none;
+        .toggle-panel {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            /* background: seagreen; */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            transition: .6s ease-in-out;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
+        .toggle-panel.toggle-left {
+            left: 0;
+            transition-delay: 1.2s;
+        }
+
+        .container.active .toggle-panel.toggle-left {
+            left: -50%;
+            transition-delay: .6s;
+        }
+
+        .toggle-panel.toggle-right {
+            right: -50%;
+            transition-delay: .6s;
+        }
+
+        .container.active .toggle-panel.toggle-right {
+            right: 0;
+            transition-delay: 1.2s;
+        }
+
+        .toggle-panel p {
+            margin-bottom: 20px;
+        }
+
+        .toggle-panel .btn {
+            width: 160px;
+            height: 46px;
+            background: transparent;
+            border: 2px solid #fff;
+            box-shadow: none;
+        }
+
+        @media screen and (max-width: 650px) {
+            .container {
+                height: calc(100vh - 0px);
             }
 
-            to {
-                transform: translateY(0);
-                opacity: 1;
+            .form-box {
+                bottom: 0;
+                width: 100%;
+                height: 70%;
+            }
+
+            .container.active .form-box {
+                right: 0;
+                bottom: 30%;
+            }
+
+            .toggle-box::before {
+                left: 0;
+                top: -270%;
+                width: 100%;
+                height: 300%;
+                border-radius: 20vw;
+            }
+
+            .container.active .toggle-box::before {
+                left: 0;
+                top: 70%;
+            }
+
+            .container.active .toggle-panel.toggle-left {
+                left: 0;
+                top: -30%;
+            }
+
+            .toggle-panel {
+                width: 100%;
+                height: 30%;
+            }
+
+            .toggle-panel.toggle-left {
+                top: 0;
+            }
+
+            .toggle-panel.toggle-right {
+                right: 0;
+                bottom: -30%;
+            }
+
+            .container.active .toggle-panel.toggle-right {
+                bottom: 0;
             }
         }
 
-        @media (max-width: 480px) {
-            #auth-section {
-                width: 90%;
-                padding: 30px;
+        @media screen and (max-width: 400px) {
+            .form-box {
+                padding: 20px;
             }
 
-            input,
-            button {
-                font-size: 15px;
-                padding: 12px;
+            .toggle-panel h1 {
+                font-size: 30px;
             }
         }
 
         .password-toggle {
             position: absolute;
-            right: 15px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
-            color: #98c1d9;
+            font-size: 20px;
+            color: #888;
+        }
+
+        .password-toggle:hover {
+            color: #333;
+        }
+
+        .spinner-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #fff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
 
 <body>
-    <div id="auth-section">
-        <!-- Login Form -->
-        <div id="login-section" class="active">
-            <h3>Login</h3>
-            <div class="input-group">
-                <input type="email" id="login-email" placeholder=" " required>
-                <label for="login-email">Email</label>
-            </div>
-            <div class="input-group">
-                <input type="password" id="login-password" placeholder=" " required>
-                <label for="login-password">Password</label>
-                <i class="fas fa-eye password-toggle" onclick="togglePasswordVisibility('login-password')"></i>
-            </div>
-            <button onclick="loginUser()">Login</button>
-            <p>Don't have an account? <a href="#" onclick="toggleSection()">Register</a></p>
+    <div class="container">
+        <div class="form-box login">
+            <form id="login-form">
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                    <i class="bx bx-show password-toggle" onclick="togglePasswordVisibility('login-password')"></i>
+                </div>
+                <div class="forgot-link">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="button" class="btn" onclick="loginUser()">Login</button>
+              
         </div>
 
-        <!-- Register Form -->
-        <form id="register-form">
-            <h3>Register</h3>
-            <div class="input-group">
-                <input type="email" id="register-email" placeholder=" " required>
-                <label for="register-email">Email</label>
-            </div>
-            <div class="input-group">
-                <input type="password" id="register-password" placeholder=" " required>
-                <label for="register-password">Password</label>
-                <i class="fas fa-eye password-toggle" onclick="togglePasswordVisibility('register-password')"></i>
-            </div>
-            <div class="input-group">
-                <input type="text" id="register-username" placeholder=" " required>
-                <label for="register-username">Username</label>
-            </div>
-            <button type="button" id="register-btn" onclick="registerUser()">Register</button>
-            <p>Already have an account? <a href="#" onclick="toggleSection()">Login</a></p>
-        </form>
+        <div class="form-box register">
+            <form id="register-form">
+                <h1>Registration</h1>
+                <div class="input-box">
+                    <input type="text" id="register-username" placeholder="Username" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" id="register-email" placeholder="Email" required>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="register-password" placeholder="Password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                    <i class="bx bx-show password-toggle" onclick="togglePasswordVisibility('register-password')"></i>
+                </div>
+                <button type="button" class="btn" id="register-btn" onclick="registerUser()">Register</button>
+                
+            </form>
+        </div>
 
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>Hello, Welcome!</h1>
+                <p>Don't have an account?</p>
+                <button class="btn register-btn">Register</button>
+            </div>
+
+            <div class="toggle-panel toggle-right">
+                <h1>Welcome Back!</h1>
+                <p>Already have an account?</p>
+                <button class="btn login-btn">Login</button>
+            </div>
+        </div>
     </div>
-
-    <!-- Firebase CDN links -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-    <script>
+    <!-- Firebase SDK -->
+    <script type="module">
+            // Import Firebase
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+        import { getFirestore, setDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyACfUtpWAZ26Zy3Rnl5WrI8NxyOT3ew8k4",
-            authDomain: "my-dynamic-cv.firebaseapp.com",
-            projectId: "my-dynamic-cv",
-            storageBucket: "my-dynamic-cv.firebasestorage.app",
-            messagingSenderId: "1061904985626",
-            appId: "1:1061904985626:web:3b867c3525b4c622bb2ba3",
-            measurementId: "G-X9YER14J41"
+            apiKey: "AIzaSyCzuy6Nulrm7f9C9RNdSldIzWllybx1EqQ",
+            authDomain: "my-dynamic-cv-40f4e.firebaseapp.com",
+            projectId: "my-dynamic-cv-40f4e",
+            storageBucket: "my-dynamic-cv-40f4e.appspot.com",
+            messagingSenderId: "1055972904572",
+            appId: "1:1055972904572:web:c368308cedddf5c06d03f9"
         };
 
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-        function toggleSection() {
-            const loginSection = document.getElementById("login-section");
-            const registerForm = document.getElementById("register-form");
+        // Toggle Login/Register
+        const container = document.querySelector('.container');
+        document.querySelector('.register-btn').addEventListener('click', () => {
+            container.classList.add('active');
+        });
+        document.querySelector('.login-btn').addEventListener('click', () => {
+            container.classList.remove('active');
+        });
 
-            loginSection.classList.toggle("active");
-            registerForm.classList.toggle("active");
+        // Toggle Password Visibility
+        window.togglePasswordVisibility = function (inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // Change eye icon
+            let icon = passwordInput.parentNode.querySelector('.password-toggle');
+            icon.classList.toggle('bx-show');
+            icon.classList.toggle('bx-hide');
         }
 
-        function loginUser() {
+        // Login Function
+        window.loginUser = function () {
             const email = document.getElementById("login-email").value;
             const password = document.getElementById("login-password").value;
 
-            auth.signInWithEmailAndPassword(email, password)
-                .then(() => {
-                    // Redirect to create.html after successful login
-                    window.location.href = "index.html";
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user; // Access the user object after successful sign-in
+
+                    // Fetch the username and profile picture from Firestore
+                    const docRef = doc(db, "users", user.uid);
+
+                    getDoc(docRef)
+                        .then((doc) => {
+                            if (doc.exists()) {
+                                const userData = doc.data();
+                                const username = userData.username || user.email;
+                                const profilePicURL = userData.profilePicURL || "Screenshot_2025-02-28_104148-removebg-preview.png";
+                                // Store username and profilePic in localStorage
+                                localStorage.setItem('username', username);
+                                localStorage.setItem('profileImage', profilePicURL);
+
+                                let redirectURL = localStorage.getItem('redirectAfterLogin') || "index.html";
+                                localStorage.removeItem('redirectAfterLogin'); // Clear after use
+
+                                window.location.href = redirectURL;
+                            } else {
+                                console.log("No such document!");
+                            }
+                        })
+                        .catch((error) => {
+                            console.log("Error getting document:", error);
+                        });
                 })
                 .catch(error => {
-                    console.error("Login Error:", error.message); // Use console.error
+                    console.error("Login Error:", error.message);
                     alert("Invalid username or password");
                 });
         }
 
-        // Register user
-        async function registerUser() {
+        // Register Function
+        window.registerUser = async function () {
             const email = document.getElementById("register-email").value;
             const password = document.getElementById("register-password").value;
             const username = document.getElementById("register-username").value;
-
             const registerButton = document.getElementById("register-btn");
 
-            // Validation
             if (!email || !password || !username) {
                 alert("Please fill all fields.");
-                return; // Stop if any field is missing
+                return;
             }
 
             if (username.length < 3) {
@@ -287,67 +480,33 @@
             }
 
             registerButton.disabled = true;
-            registerButton.innerHTML = `
-            <div class="spinner-div">
-                <span class="spinner"></span>
-            </div>
-        `;
+            registerButton.innerHTML = `<div class="spinner-div"><span class="spinner"></span></div>`;
 
             try {
-                const cred = await auth.createUserWithEmailAndPassword(email, password);
-                await db.collection("users").doc(cred.user.uid).set({
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user; // Get the User object
+                await setDoc(doc(db, "users", user.uid), {
                     username: username,
                     email: email,
+                   profilePicURL: "Screenshot_2025-02-28_104148-removebg-preview.png", // store the image
                 });
                 alert("Registration successful!");
 
-                // Get the stored redirect URL, if any.
-                let redirectURL = localStorage.getItem('redirectAfterLogin');
+                // Set data into local storage
+                localStorage.setItem('username', username);
+                localStorage.setItem('profileImage', "Screenshot_2025-02-28_104148-removebg-preview.png"); // store the image
 
-                // Clear the stored URL so we don't redirect again on future logins.
-                localStorage.removeItem('redirectAfterLogin');
-
-                if (redirectURL) {
-                    // Redirect the user
-                    window.location.href = redirectURL;
-                    console.log("Redirecting to stored URL:", redirectURL); // Add this line
-                } else {
-                    // If no stored URL, redirect to the resume creation page by default.
-                    window.location.href = "create.html";
-                    console.log("Redirecting to default URL: create.html"); // Add this line
-                }
-
+                let redirectURL = localStorage.getItem('redirectAfterLogin') || "index.html";
+                localStorage.removeItem('redirectAfterLogin'); // Clear after use
+                window.location.href = redirectURL;
             } catch (error) {
-                console.error("Registration Error:", error.message); // Use console.error
-
-                // Improved error display for existing user
-                if (error.code === 'auth/email-already-in-use') {
-                    alert("This email address is already in use. Please try a different one or login.");
-                } else {
-                    alert("Registration failed: " + error.message);  //General error
-                }
-
+                console.error("Registration Error:", error.message);
+                alert(error.code === 'auth/email-already-in-use' ? "This email is already in use. Please log in." : "Registration failed: " + error.message);
             } finally {
                 registerButton.disabled = false;
                 registerButton.innerHTML = 'Register';
             }
         }
-        async function isUsernameAvailable(username) {
-            const snapshot = await db.collection("users").where("username", "==", username).get();
-            return snapshot.empty; // True if the username is available
-        }
-        function togglePasswordVisibility(inputId) {
-            const passwordInput = document.getElementById(inputId);
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-
-            const toggleIcon = passwordInput.nextElementSibling;
-            toggleIcon.classList.toggle('fa-eye');
-            toggleIcon.classList.toggle('fa-eye-slash');
-        }
-
-        // Check authentication state on page load
-     
     </script>
 </body>
 
