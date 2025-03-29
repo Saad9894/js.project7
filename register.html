@@ -500,6 +500,7 @@
                 localStorage.removeItem('redirectAfterLogin'); // Clear after use
                 window.location.href = redirectURL;
             } catch (error) {
+             
                 console.error("Registration Error:", error.message);
                 alert(error.code === 'auth/email-already-in-use' ? "This email is already in use. Please log in." : "Registration failed: " + error.message);
             } finally {
