@@ -15,58 +15,39 @@
 
     <style>
         /* General Styles */
-        body {
-            margin: 0;
-            padding: 0;
+        /* General Navbar Styling */
+        .navbar {
+            display: flex;
+            z-index: 1;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0%;
+            justify-content: center;
+            gap: 5%;
+            background-color: #f4f4f9;
+            height: 86px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 0 20px;
             box-sizing: border-box;
         }
 
-        * {
-            font-family: "Alegreya", serif;
-        }
-
-        /* Navbar */
-        .navbar {
-    display: flex
-;
-    z-index: 1;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0%;
-    justify-content: center;
-    gap: 2%;
-    background-color: #f4f4f9;
-    height: 86px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* padding: 0 20px; */
-    box-sizing: border-box;
-}
+        /* Logo Styling */
         .logo img {
-            width: 100%;
-            height: 92px;
+            height: 100px;
+            width: 164%;
             justify-content: unset;
             cursor: pointer;
-            transition: transform 0.3sease;
+            transition: transform 0.3s ease;
             display: flex;
         }
 
-        .logo {
-            width: 18%;
-        }
-
+        /* Navigation Links Styling */
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 1.5rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links li a:hover,
-        .nav-links li a.active {
-            background-color: #007bff;
-            color: #fff;
+            gap: 10px;
+            align-items: center;
         }
 
         .nav-links li a {
@@ -75,13 +56,89 @@
             font-weight: bold;
             padding: 8px 12px;
             border-radius: 4px;
-            transition: background-color 0.3sease, color 0.3sease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Theme Switcher */
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* Theme Switcher Styling */
         .theme-switcher {
             display: flex;
             align-items: center;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: rgb(2, 2, 2);
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #007bff;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+
+        /* Loading Screen */
+
+
+        /* Theme Variables */
+        :root {
+            --background: #ffffff;
+            --text: #333333;
+            --nav-bg: #f0f0f0;
+            --nav-text: #333333;
+            --highlight: #007bff;
+        }
+
+        [data-theme="dark"] {
+            --background: #121212;
+            --text: #ffffff;
+            --nav-bg: #333333;
+            --nav-text: #ffffff;
+            --highlight: #ff6f61;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
         }
 
         .switch {
@@ -116,103 +173,282 @@
             width: 14px;
             left: 3px;
             bottom: 3px;
-            background-color: black;
+            background-color: white;
             transition: 0.4s;
             border-radius: 50%;
         }
 
         input:checked+.slider {
-            background-color: #ff4400;
+            background-color: var(--highlight);
+            color: #ccc;
         }
 
         input:checked+.slider:before {
-            transform: translateX(20px);
+            transform: translateX(14px);
         }
 
-        /* Theme Variables */
-        :root {
-            --background: #ffffff;
-            --text: #333333;
-            --highlight: #007bff;
+        /* Container */
+
+
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
         }
 
-        [data-theme="dark"] {
-            --background: #121212;
-            --text: #ffffff;
-            --highlight: #ff6f61;
+        /* Mobile Menu Button Styles */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 30px;
+            color: #333;
+        }
+
+
+        /* Styles for Small Screens */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 86px;
+                left: 0;
+                width: 100%;
+                background-color: #f4f4f4;
+                padding: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                z-index: 2;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+
+            .login {
+                display: flex;
+                width: 25%;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 500px) {
+            .icon {
+                display: flex;
+                gap: 5%;
+                width: 41px;
+                transform: translate(-51px, -1px);
+            }
+
+        }
+
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .create-btn {
+
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .create-btn:hover {
+            background-color: #007bff;
+        }
+
+        .login {
+            display: flex;
+            width: 12%;
+
+        }
+
+        /* Section style for each page */
+
+        /* Profile Dropdown Styles */
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+            /* Important: Use inline-block */
+            cursor: pointer;
+        }
+
+        .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            /* min-width: 160px; */
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            z-index: 1;
+            top: 119%;
+            /* right: 149px; */
+            border-radius: 8px;
+        }
+
+        /*
+         .profile-dropdown:hover .profile-dropdown-content {
+             display: block;
+             Show when hovering
+         }
+        */
+        .profile-dropdown-content a {
+            color: black;
+            padding: 8px 10px;
+            text-decoration: none;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .profile-dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        #profile-image-input {
+            display: none;
+            /* Hide the file input */
+        }
+
+        .fa-solid,
+        .fas {
+            font-family: "Font Awesome 6 Free";
+            font-size: 31px;
+        }
+
+        span#username-display {
+            text-transform: uppercase;
+            font-size: 23px;
+            margin: 5% 0%;
+            color: black;
+        }
+
+        .icon {
+            display: flex;
+            gap: 5%;
+            width: 230px;
+            margin-top: -5%;
+            /* transform: translate(-51px,-1px); */
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #007bff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin: 0 auto;
+
+        }
+
+        .spinner-div {
+            display: flex;
+            justify-content: center;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .profile img {
+                width: 40px;
+                height: 40px;
+            }
+
+            #profilePic {
+                width: 97%;
+                /* height: 120px; */
+                border-radius: 50%;
+                object-fit: cover;
+                /* margin-bottom: 10px; */
+            }
+
+            .login {
+                display: flex;
+                transform: translate(-13px, 4px);
+                width: 16%;
+            }
+
+            span#username-display {
+                font-size: 16px;
+            }
+        }
+
+        .profile-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container h2 {
+            color: #007BFF;
+        }
+
+
+
+
+        #profilePic {
+            width: 19%;
+            /* height: 120px; */
+            border-radius: 50%;
+            object-fit: cover;
+            /* margin-bottom: 10px; */
+        }
+
+        .nav {
+            display: contents;
         }
 
         body {
-            background-color: var(--background);
-            color: var(--text);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .theme-switcher .switch {
-            position: relative;
-            display: inline-block;
-            width: 54px;
-            margin: 1% 6%;
-            height: 26px;
+        * {
+            font-family: "Alegreya", serif;
         }
 
-        .theme-switcher {
-            display: flex;
-            align-items: center;
-        }
-
-        .theme-switcher .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .theme-switcher .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .theme-switcher .slider:before {
-            position: absolute;
-            content: "";
-            height: 19px;
-            width: 16px;
-            left: 0px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked+.slider {
-            background-color: #f34121;
-        }
-
-        input:focus+.slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked+.slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
 
         /* Resume Section */
-      
-        #resume-section {
-    text-align: center;
-    padding: 8rem;
-    margin-bottom: -8rem;
-}
+
+        /* #resume-section {
+            text-align: center;
+            padding: 8rem;
+            margin-bottom: -8rem;
+        } */
+
         /* Container */
         /* Form Styles */
         label {
@@ -335,21 +571,6 @@
             margin-bottom: 20px;
         }
 
-        .profile-image-container {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .profile-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
 
         .header-text {
             flex-grow: 1;
@@ -420,44 +641,13 @@
             font-family: 'Courier New', Courier, monospace;
         }
 
-        /* Mobile Menu Button Styles */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 30px;
-            color: #333;
-        }
 
-        /* Media Queries */
-        @media (max-width: 992px) {}
 
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
 
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 86px;
-                left: 0;
-                width: 100%;
-                background-color: #f4f4f4;
-                padding: 10px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                z-index: 2;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
 
             .generate {
                 flex-direction: column;
@@ -473,9 +663,7 @@
                 text-align: center;
             }
 
-            .profile-image-container {
-                margin: auto auto 20px;
-            }
+
 
             .section1 {
                 flex-direction: column;
@@ -487,14 +675,9 @@
                 text-align: left;
             }
         }
-        @media (max-width: 500px) {
-            .icon {
-            display: flex;
-            gap: 5%;
-            width: 41px;
-            transform: translate(-51px,-1px);
-        }
-    }
+
+
+
         /* New Styles for Layout */
         .top-section {
             color: #333;
@@ -506,19 +689,7 @@
             /* Added transition */
         }
 
-        nav {
-            display: contents;
-        }
 
-        .profile-image-container {
-            /* width: 32%; */
-            margin: 3% 3%;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: box-shadow 0.3s ease;
-            /* Added transition */
-        }
 
         form#resumeForm {
             background: #bf8bef;
@@ -876,6 +1047,31 @@
             }
         }
 
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .navbar {
+                display: flex;
+                z-index: 1;
+                align-items: center;
+                position: fixed;
+                width: 100%;
+                top: 0%;
+                justify-content: center;
+                gap: 0%
+            }
+
+            span#username-display {
+                text-transform: uppercase;
+                font-size: 16px;
+                margin: 5% 0%;
+                color: black;
+            }
+
+        }
+        .div{
+            display: flex;
+            gap: 1%;
+        }
+
         /* Example: Form elements stacked vertically */
         @media (max-width: 576px) {
             .form-row {
@@ -895,148 +1091,15 @@
             }
         }
 
-        .login {
-            width: 12%;
-            display: contents;
-        }
-
-        /* Profile Dropdown Styles */
-        .profile-dropdown {
-            position: relative;
-            display: inline-block;
-            /* Important: Use inline-block */
-            cursor: pointer;
-        }
-
-        .profile-dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            padding: 12px 16px;
-            z-index: 1;
-            right: 0;
-            top: 52%;
+        .text {
+            max-width: 800px;
+            margin: 5rem auto 2rem;
+            padding: 2rem;
             border-radius: 8px;
-            /* transform: translateX(-50%); to center */
+            text-align: center;
         }
-
-        /*
-         .profile-dropdown:hover .profile-dropdown-content {
-             display: block;
-              Show when hovering
-         }
-        */
-        .profile-dropdown-content a {
-            color: black;
-            padding: 8px 10px;
-            text-decoration: none;
-            display: block;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .profile-dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        #profile-image-input {
-            display: none;
-            /* Hide the file input */
-        }
-
-        span#username-display {
-            text-transform: uppercase;
-            font-size: 23px;
-            color: black;
-            margin: 3% 1%;
-        }
-
-        .icon {
-            display: flex;
-            gap: 5%;
-            width: 90px;
-            /* transform: translate(-51px,-1px); */
-        }
-
-        /* Media Queries for responsiveness */
-        @media (max-width: 768px) {
-            .profile img {
-                width: 40px;
-                height: 40px;
-            }
-            .login {
-                display: flex;
-                transform: translate(-13px, 4px);
-                width: 16%;
-            }
-
-            span#username-display {
-                font-size: 16px;
-            }
-        }
-
-        .profile-container {
-            /* max-width: 400px; */
-            margin: auto;
-            /* padding: 20px; */
-            display: flex;
-            justify-content: end;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        div#profile-section {
-            width: 13%;
-        }
-
-        #profilePic {
-            width: 69%;
-            /* height: 120px; */
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-
-        /* Mobile Menu Button Styles */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 30px;
-            color: #333;
-        }
-
-        /* Styles for Small Screens */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 86px;
-                left: 0;
-                width: 100%;
-                background-color: #f4f4f4;
-                padding: 10px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                z-index: 2;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-        }
-        
-      
-
     </style>
+
 </head>
 
 <body>
@@ -1064,7 +1127,7 @@
                     </div>
                 </ul>
             </nav>
-            
+
             <div class="login">
                 <div id="auth-buttons">
                     <a href="register.html"><button class="create-btn" id="login-button">Login</button></a>
@@ -1073,10 +1136,10 @@
                     onclick="toggleDropdown()">
                     <div class="icon">
                         <span id="username-display"></span>
-                        <img id="profilePic" src="default-profile.png" alt="Profile Picture">
+                        <img id="profilePic" src="Screenshot_2025-02-28_104148-removebg-preview.png" alt="Profile Picture">
                     </div>
                     <div class="profile-dropdown-content" id="profile-dropdown-content">
-                 
+
                         <input type="file" id="profile-image-input" accept="image/*">
                         <a href="#" onclick="logout()">Logout</a>
                         <a href="profile.html">profile</a>
@@ -1087,9 +1150,13 @@
         </header>
         <div class="container">
             <section id="resume-section" class="resume-section">
-                <h2>Interactive Resume Creator</h2>
-                <p>Welcome to the resume creation section! Here, you can add all your details to build your personalized
-                    resume.
+                <div class="text">
+                    <h2>Interactive Resume Creator</h2>
+                    <p>Welcome to the resume creation section! Here, you can add all your details to build your
+                        personalized
+                        resume.
+
+                </div>
                 </p>
             </section>
             <div class="main">
@@ -1124,8 +1191,14 @@
 
                     <label class="word" for="skills">Skills</label>
                     <br>
-                    <button type="button" onclick="addSkillField()">Add Skill</button>
+                  <div class="div">
+                    <input type="text" name="skills[]" placeholder="Enter skill" required>
+                    <button type="button" onclick="removeSkill(this)">Remove</button>
+                  </div>
                     <div id="skills-container"></div>
+                    <br>
+
+                    <button type="button" onclick="addSkillField()">Add Skill</button>
 
                     <label class="word" for="languages">Languages (Select up to 5)</label>
                     <div class="language-dropdown-container">
