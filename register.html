@@ -58,22 +58,25 @@
             width: 50%;
             height: 100%;
             background: #fff;
-            display: flex;
+            /* display: flex; */
             align-items: center;
             color: #333;
             text-align: center;
             padding: 40px;
+            top: 17%;
             z-index: 1;
             transition: .6s ease-in-out 1.2s, visibility 0s 1s;
+        }
+
+        .form-box.register {
+            top: 10%;
+            visibility: hidden;
         }
 
         .container.active .form-box {
             right: 50%;
         }
 
-        .form-box.register {
-            visibility: hidden;
-        }
 
         .container.active .form-box.register {
             visibility: visible;
@@ -337,7 +340,7 @@
                     <a href="#">Forgot Password?</a>
                 </div>
                 <button type="button" class="btn" onclick="loginUser()">Login</button>
-              
+
         </div>
 
         <div class="form-box register">
@@ -357,7 +360,7 @@
                     <i class="bx bx-show password-toggle" onclick="togglePasswordVisibility('register-password')"></i>
                 </div>
                 <button type="button" class="btn" id="register-btn" onclick="registerUser()">Register</button>
-                
+
             </form>
         </div>
 
@@ -381,8 +384,8 @@
 
     <!-- Firebase SDK -->
     <script type="module">
-            // Import Firebase
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        // Import Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
         import { getFirestore, setDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
@@ -488,7 +491,7 @@
                 await setDoc(doc(db, "users", user.uid), {
                     username: username,
                     email: email,
-                   profilePicURL: "Screenshot_2025-02-28_104148-removebg-preview.png", // store the image
+                    profilePicURL: "Screenshot_2025-02-28_104148-removebg-preview.png", // store the image
                 });
                 alert("Registration successful!");
 
@@ -500,7 +503,7 @@
                 localStorage.removeItem('redirectAfterLogin'); // Clear after use
                 window.location.href = redirectURL;
             } catch (error) {
-             
+
                 console.error("Registration Error:", error.message);
                 alert(error.code === 'auth/email-already-in-use' ? "This email is already in use. Please log in." : "Registration failed: " + error.message);
             } finally {
